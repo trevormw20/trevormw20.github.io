@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700|Merriweather:400,700&display=swap');
+
+body {
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.5;
+}
+
+header, nav, main, footer {
+    margin: 1.25rem auto;
+    max-width: 760px;
+}
+
+header, footer {
+    border-radius: 15px;
+    background-color: #663a82;
+    color: #fff;
+    padding: 1.25rem;
+    
+}
+
+header {
+    max-height: 75px;
+    line-height: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-family: 'Merriweather', serif;
+    font-weight: bold;
+}
+
+#profilepic {
+    float: right;
+    width: 20%;
+    height: 20%;
+    border-top-right-radius: 15px;
+    box-shadow: 0px 0px 50px 0px #3c1361;
+
+} 
+
+footer {
+    text-align: center;
+    font-family: 'Merriweather', serif;
+}
+
+ a.footerlink:visited {
+     color:  #a0d8f3;
+ }
+
+ a.footerlink.link {
+     color: #fff;
+ }
+
+ a.footerlink:hover {
+     color: yellow;
+ }
