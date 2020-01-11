@@ -25,12 +25,16 @@ header {
     width: 20%;
     height: 20%;
     border-top-right-radius: 15px;
-    box-shadow: 0px 0px 50px 0px #4d6f97;
+    box-shadow: 0px 0px 35px 0px #4d6f97;
 
 } 
 
+#listTitle {
+    
+}
+
 body {
-    font-size: 18px;
+    font-size: 20px;
     font-family: Georgia, Times, "Times New Roman", serif;
     line-height: 1.5;
 }
