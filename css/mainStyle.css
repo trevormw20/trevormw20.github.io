@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700|Merriweather:400,700&display=swap');
-
 body {
     font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Georgia, Times, "Times New Roman", serif;
     line-height: 1.5;
 }
 
@@ -24,22 +22,22 @@ header {
     line-height: 10px;
     text-align: center;
     font-size: 24px;
-    font-family: 'Merriweather', serif;
+    font-family: Georgia, Times, "Times New Roman", serif;
     font-weight: bold;
 }
 
-#profilepic {
+#profilePicture {
     float: right;
     width: 20%;
     height: 20%;
     border-top-right-radius: 15px;
-    box-shadow: 0px 0px 50px 0px #5596e6;
+    box-shadow: 0px 0px 50px 0px #4d6f97;
 
 } 
 
 footer {
     text-align: center;
-    font-family: 'Merriweather', serif;
+    font-family: Georgia, Times, "Times New Roman", serif;
 }
 
  a.footerlink:visited {
