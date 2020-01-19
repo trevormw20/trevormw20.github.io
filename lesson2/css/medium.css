@@ -1,0 +1,8 @@
+@media only screen and (min-width: 560px) {
+    main {
+        grid-template-columns: 1fr 1fr;
+    }
+    .column {
+        max-width: 40%;
+    }
+}
