@@ -7,6 +7,6 @@
         grid-template-columns: 1fr 1fr 1fr;
     }
     .column {
-        max-width: 30%;
+        max-width: 90%;
     }
 }
