@@ -52,24 +52,6 @@ nav {
 	display: block;
 }
 
-/* Media Query for medium + screens */
-@media only screen and (min-width: 32.5em) {
-	.navigation {
-		display: flex;
-	}
-	.navigation li {
-		display: block; /* needed because of state in small view */
-		flex: 1 1 100%;
-	}
-	.navigation li a {
-		color: #fff;
-		text-align: center;
-	}
-	
-	.navigation li:first-child {
-		display: none;
-	}
-}
 
 #bar{
   background-color: #189fdd; 
@@ -95,15 +77,12 @@ nav {
   margin-top: -16px;
 }
 
-#footerContent{
-  margin-left: 10%;
-  margin-right: 10%;
-
-}
-
 footer {
   background-color: #189fdd; 
   color: #fff;
+  display: flex;
+justify-content: center;
+padding: 1%;
 }
 
 #headerAlign{

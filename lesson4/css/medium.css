@@ -1,0 +1,17 @@
+@media only screen and (min-width: 560px) {
+    .navigation {
+		display: flex;
+	}
+	.navigation li {
+		display: block; /* needed because of state in small view */
+		flex: 1 1 100%;
+	}
+	.navigation li a {
+		color: #fff;
+		text-align: center;
+	}
+	
+	.navigation li:first-child {
+		display: none;
+	}
+}

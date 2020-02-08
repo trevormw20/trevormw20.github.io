@@ -86,10 +86,6 @@ nav {
   border: 1px solid lightgrey;
   float: none;
 }
-
-#weeklyEvents{
-  
-}
 .weeklyEventsShow{
   display: flex;
   justify-content: center;
