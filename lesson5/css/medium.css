@@ -3,8 +3,8 @@
 
         font-size: 20px ;
     }
-    #weeklyEvent{
-        font-size: 36px;
+    #weeklyEvents{
+        font-size: 120%;
     }
 
     .navigation {
@@ -23,17 +23,24 @@
 		display: none;
 	}
 
-    /*.bottomContent {
-        display: grid;
-        grid-template: 50% 50% / 25% 10% 45%;
-    }*/
-    
-    .bottomContent img {
-        float: right;
-        max-width: 100%;
+  .bottomContent {
+    height: 350px;
+    position: relative;
     }
+    
+  .bottomContent img {
+    display: flex;
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    width: 500px;
+    max-height: 80%;
+    max-width: 60%;
+    position: absolute;
+    overflow: auto;
+  }
 
-      /*----------- 5 day forecast----------*/
+  /*----------- 5 day forecast----------*/
 
 
 .fiveDayForecast {
@@ -107,16 +114,21 @@
   }
   
   #container {
-      font-size: 20px;
+      font-size: 120%;
+      flex-wrap: nowrap;
   }
 
   #weather{
     display: grid;
     grid-template: 5% 50% 15% 30% / 4% 54% 42%;
   }
+
+  #article{
+    position: relative;
+    height: 435px;
+  }
   
   #article img{
-    float:right;
-    height:200px;
+    float: right;
   }
 }
