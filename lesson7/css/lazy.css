@@ -1,0 +1,18 @@
+.lazyLoadGrid {
+    display: grid;
+    grid-template-columns: auto;
+    max-width: 400px;
+    max-height: 300px;
+    grid-gap: 20px;
+}
+
+
+.lazyLoadGrid [data-src]{
+    filter: blur(.5em);
+}
+
+ img{
+  filter: blur(0em);
+  transition: filter 0.5s;
+}
+
