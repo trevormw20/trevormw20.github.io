@@ -136,7 +136,6 @@ footer {
 }
 
 .lightShadow {box-shadow: 0px 0px 12px -5px black;}
-.lightShadow:hover {box-shadow: 15px 15px 35px -5px rgb(99, 99, 99);}
 
 #img1 {grid-area: img1;}
 #p1{grid-area: text1;}
