@@ -5,9 +5,6 @@ function toggleMenu() {
   document.querySelector(".navigation").classList.toggle("responsive");
 }
 
-
-
-
 function toggleWeeklyEvent() {
   document.querySelector(".weeklyEvent").classList.toggle("display");
 }
@@ -15,5 +12,3 @@ function toggleWeeklyEvent() {
 function toggleFiveDForecast() {
   document.querySelector(".fiveDayForecast").classList.toggle("display");
 }
-
-
