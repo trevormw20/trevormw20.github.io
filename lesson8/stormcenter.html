@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="css/small.css" rel="stylesheet">
+    <link href="css/medium.css" rel="stylesheet">
+    <link href="css/large.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="js/responsiveMenu.js" defer></script>
+    <script type="text/javascript" src="js/lazyLoad.js" defer></script>
+   
+    <title>Pacific Sky Weather</title>
+    <meta name="description" content="Pacific Sky Weather website.">
+</head>
+<body>
+    <div id=background><div id=background2><div id=background3>
+
+    <header>
+        <br>
+        <div id="weeklyEvents">
+            <h2>
+                Saturday = Preston Pancakes in the Park!  
+                <br>
+                9:00 a.m. Saturday at the city park pavilion.
+            </h2>
+        </div>
+       <div id="headerAlign">
+        <img id="LogoPicture" alt="/Image of Pacific Sky Weather logo" src="images/logo.png">
+        <h1>Pacific Sky Weather</h1>
+        <h2>Local sky weather every hour</h2>
+       </div>
+            
+
+       <div id="bar">
+           <div id="container">
+            <nav>
+                <ul class="navigation">
+                    <li><a class="ham" href="#">&#9776; Menu</a></li>
+                  <li><a href="https://trevormw20.github.io/lesson4/index.html">Home</a></li>
+                  <li><a href="https://trevormw20.github.io/lesson5/preston.html">Preston</a></li>
+                  <li><a href="sodasprings.html">Soda Springs</a></li>
+                  <li><a href="fishhaven.html">Fish Haven</a></li>
+                  <li><a class="active" href="stormcenter.html">Storm Center</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>
+                </ul>
+            </nav>
+           </div>
+       </div>
+    
+    </header>
+
+    <div class="mainContent">
+        <h1 style="margin-top: 0px; padding-top: 15px;">Storm Center</h1>
+        <form action="/action_page.php">
+            <label for="fullName">Full name:</label><br>
+            <input type="text" id="fullName" name="fullName" value="James"><br><br>
+            
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email" value="james@gmail.com"><br><br>
+            
+            <label for="phoneNumber">Phone Number:</label><br>
+            <input type="number" id="phoneNumber" name="phoneNumber" value="(123) 123 - 4563"><br><br>
+
+            <label for="zipCode">Zip Code:</label><br>
+            <input type="number" id="zipCode" name="zipCode" value="123456"><br><br>
+
+            <label for="stormDate">Storm Date:</label><br>
+            <input type="number" id="stormDate" name="stormDate" value="2/22/20"><br><br>
+
+            <label for="stormType">Storm Type:</label><br><br>
+            <!----drop down muenu-->
+
+            <label for="stormSeverity">Storm Severity:</label><br><br>
+            <!----drop down muenu-->
+
+            <label for="stormRegion">Storm Region:</label><br><br>
+            <!----drop down muenu-->
+            
+            <label for="userInDangerLevel">User in-danger level:</label><br><br>
+            <!----drop down muenu-->
+
+            <label for="comments">Additional information / comments:</label><br>
+            <!----text area-->
+
+            <input type="submit" value="Submit">
+          </form> 
+    </div>
+    <footer>
+        <div id="footerContent">
+            &copy; 2020 | Trevor Williams | California | <a class="footerlink" href="https://www.byui.edu/online">BYUI Online Learning</a>
+            <br>
+             Last Updated: <span id="dateUpdated"></span>
+        </div>
+    </footer>
+    <script src="js/lastUpdated.js"></script>
+</div></div></div>
+
+<script>
+    const todaysDate = new Date();
+    const numDay = todaysDate.getDay();
+    const element = document.getElementById("weeklyEvents");
+    if (numDay == 6){
+        element.classList.add("weeklyEventsShow");
+        console.log("show");
+    }
+    else{
+     element.classList.add("weeklyEventsHide");
+     console.log("hide");
+    }
+</script>
+</body>
+
+</html>
