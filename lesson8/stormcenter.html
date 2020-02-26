@@ -54,37 +54,74 @@
     <div class="mainContent">
         <h1 style="margin-top: 0px; padding-top: 15px;">Storm Center</h1>
         <form action="/action_page.php">
-            <label for="fullName">Full name:</label><br>
-            <input type="text" id="fullName" name="fullName" value="James"><br><br>
+        <fieldset>
+            <label for="fullName">Full name:<br>
+            <input required type="text" id="fullName" name="name" placeholder="John Doe" pattern="[A-Za-z]{5}"></label>
+        </fieldset><br><br>
+
+            <fieldset>
+                <label for="email">Email:<br>
+            <input type="text" id="email" name="email" placeholder="johndoe@gmail.org"></label>
+        </fieldset><br><br>
             
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email" value="james@gmail.com"><br><br>
+            <fieldset>
+                <label for="phoneNumber">Phone Number:<br>
+            <input required type="number" id="phoneNumber" name="number" placeholder="###-###-####"></label>
+        </fieldset><br><br>
+
+            <fieldset>
+            <label for="zipCode">Zip Code:<br>
+            <input required type="number" id="zipCode" name="code" placeholder="123456" pattern="(\d{5}([\-]\d{4})?)"></label>
+        </fieldset><br><br>
+
+        <fieldset>
+            <label for="stormDate">Storm Date:<br>
+            <input type="date" id="stormDate" name="date"></label>
+        </fieldset><br><br>
+
+            <fieldset>
+            <label for="stormType">Storm Type:<br>
+            <input list="stormType" name="stormType">
+            <datalist id="stormType">
+                <option value="Flash Flood"></option>
+                <option value="Acid Rain"></option>
+                <option value="Hail"></option>
+                <option value="Hurricane"></option>
+                <option value="Thunderstorm"></option>
+                <option value="Thunderstorm"></option>
+                <option value="Tornado"></option>
+            </datalist></label>
+        </fieldset><br><br>
+
+        <fieldset>
+            <label for="stormSeverity">Storm Severity:<br>
+            <input type="range" id="stormSeverity" name="Severity" min="1" max="10" step="1"></label>
+        </fieldset><br><br>
+
+            <fieldset>
+            <label for="stormRegion">Storm Region:<br>
+            <select id="stormRegion" name="Region of storm">
+                <option selected disabled>Select Region</option>
+                <option value="preston">Preston</option>
+                <option value="sodasprings">Soda Springs</option>
+                <option value="fishHaven">Fish Haven</option>
+            </select></label>
+        </fieldset><br><br>
             
-            <label for="phoneNumber">Phone Number:</label><br>
-            <input type="number" id="phoneNumber" name="phoneNumber" value="(123) 123 - 4563"><br><br>
+            <fieldset>
+                <legend>User in-danger level: <em>(Choose one)</em></legend>
+                    <label for="danger0"><input type="radio" id="danger0" name="dangerLevel" value="0"> No</label>
+                    <label for="danger1"><input type="radio" id="danger1" name="dangerLevel" value="1"> Maybe</label>
+                    <label for="danger2"><input type="radio" id="danger2" name="dangerLevel" value="2"> Yes</label>
+            </fieldset><br><br>
 
-            <label for="zipCode">Zip Code:</label><br>
-            <input type="number" id="zipCode" name="zipCode" value="123456"><br><br>
+            <fieldset>
+            <label for="comments">Additional information / comments:<br>
+            <textarea name="message" rows="10" cols="30" 
+            placeholder="Please enter any additional information or comments about the severity of the storm here."></textarea></label>
+        </fieldset><br>
 
-            <label for="stormDate">Storm Date:</label><br>
-            <input type="number" id="stormDate" name="stormDate" value="2/22/20"><br><br>
-
-            <label for="stormType">Storm Type:</label><br><br>
-            <!----drop down muenu-->
-
-            <label for="stormSeverity">Storm Severity:</label><br><br>
-            <!----drop down muenu-->
-
-            <label for="stormRegion">Storm Region:</label><br><br>
-            <!----drop down muenu-->
-            
-            <label for="userInDangerLevel">User in-danger level:</label><br><br>
-            <!----drop down muenu-->
-
-            <label for="comments">Additional information / comments:</label><br>
-            <!----text area-->
-
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" onclick="thanks.html">
           </form> 
     </div>
     <footer>
