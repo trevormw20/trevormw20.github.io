@@ -142,16 +142,29 @@ nav {
 
 /*------------bottom Content---------------*/
 .bottomContent {
-
   background: rgb(251, 254, 255);
   margin-left: 7%;
   margin-right: 7%;
   box-shadow: 0px 0px 15px -4px #c2b151;
   padding-left: 5%;
   padding-right: 5%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
 }
-.bottomContent img {
-  display: none;
+.bottomContent #contactC1 {
+  flex: 1;
+  padding: 5px;
+}
+.bottomContent #contactC2 {
+  flex: 1;
+  padding: 5px;
+}
+
+.bottomContent img{
+  padding: 10px;
+  max-width: 70%;
 }
 
 footer {

@@ -23,22 +23,6 @@
 		display: none;
 	}
 
-  .bottomContent {
-    height: 350px;
-    position: relative;
-    }
-    
-  .bottomContent img {
-    display: flex;
-    top: 10%;
-    right: 10%;
-    bottom: 10%;
-    width: 500px;
-    max-height: 80%;
-    max-width: 60%;
-    position: absolute;
-    overflow: auto;
-  }
 
   /*----------- 5 day forecast----------*/
 
@@ -130,5 +114,10 @@
   
   #article img{
     float: right;
+  }
+
+  .bottomContent img{
+    padding: 10px;
+    max-width: 40%;
   }
 }
