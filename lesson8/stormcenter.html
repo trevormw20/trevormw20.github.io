@@ -56,30 +56,22 @@
         <form action="/action_page.php">
         <fieldset>
             <label for="fullName">Full name:<br>
-            <input required type="text" id="fullName" name="name" placeholder="John Doe" pattern="[A-Za-z]{5}"></label>
-        </fieldset><br><br>
+            <input required type="text" id="fullName" name="name" placeholder="John Doe" pattern="[a-zA-Z]+ [a-zA-Z]+$" minlength="5"></label><br><br>
 
-            <fieldset>
-                <label for="email">Email:<br>
-            <input type="text" id="email" name="email" placeholder="johndoe@gmail.org"></label>
-        </fieldset><br><br>
-            
-            <fieldset>
-                <label for="phoneNumber">Phone Number:<br>
-            <input required type="number" id="phoneNumber" name="number" placeholder="###-###-####"></label>
-        </fieldset><br><br>
+            <label for="email">Email:<br>
+            <input type="text" id="email" name="email" placeholder="johndoe@gmail.org"></label><br><br>
 
-            <fieldset>
+            <label for="phoneNumber">Phone Number:<br>
+            <input required type="number" id="phoneNumber" name="number" placeholder="###-###-####"></label><br><br>
+
             <label for="zipCode">Zip Code:<br>
             <input required type="number" id="zipCode" name="code" placeholder="123456" pattern="(\d{5}([\-]\d{4})?)"></label>
         </fieldset><br><br>
 
         <fieldset>
             <label for="stormDate">Storm Date:<br>
-            <input type="date" id="stormDate" name="date"></label>
-        </fieldset><br><br>
+            <input type="date" id="stormDate" name="date"></label><br><br>
 
-            <fieldset>
             <label for="stormType">Storm Type:<br>
             <input list="stormType" name="stormType">
             <datalist id="stormType">
@@ -88,41 +80,35 @@
                 <option value="Hail"></option>
                 <option value="Hurricane"></option>
                 <option value="Thunderstorm"></option>
-                <option value="Thunderstorm"></option>
+                <option value="Rainstorm"></option>
                 <option value="Tornado"></option>
-            </datalist></label>
-        </fieldset><br><br>
+            </datalist></label><br><br>
 
-        <fieldset>
             <label for="stormSeverity">Storm Severity:<br>
-            <input type="range" id="stormSeverity" name="Severity" min="1" max="10" step="1"></label>
-        </fieldset><br><br>
+            <input type="range" id="stormSeverity" name="Severity" min="1" max="10" step="1"></label><br><br>
 
-            <fieldset>
             <label for="stormRegion">Storm Region:<br>
             <select id="stormRegion" name="Region of storm">
                 <option selected disabled>Select Region</option>
                 <option value="preston">Preston</option>
                 <option value="sodasprings">Soda Springs</option>
                 <option value="fishHaven">Fish Haven</option>
-            </select></label>
-        </fieldset><br><br>
-            
-            <fieldset>
-                <legend>User in-danger level: <em>(Choose one)</em></legend>
-                    <label for="danger0"><input type="radio" id="danger0" name="dangerLevel" value="0"> No</label>
-                    <label for="danger1"><input type="radio" id="danger1" name="dangerLevel" value="1"> Maybe</label>
-                    <label for="danger2"><input type="radio" id="danger2" name="dangerLevel" value="2"> Yes</label>
-            </fieldset><br><br>
+            </select></label><br><br>
 
-            <fieldset>
+            
+
+            <label>User in-danger level: <em>(Choose one)</em></label><br>
+                <label for="danger0"><input type="radio" id="danger0" name="dangerLevel" value="0"> No</label>
+                <label for="danger1"><input type="radio" id="danger1" name="dangerLevel" value="1"> Maybe</label>
+                <label for="danger2"><input type="radio" id="danger2" name="dangerLevel" value="2"> Yes</label><br><br>
+
             <label for="comments">Additional information / comments:<br>
             <textarea name="message" rows="10" cols="30" 
             placeholder="Please enter any additional information or comments about the severity of the storm here."></textarea></label>
         </fieldset><br>
-
-            <input type="submit" value="Submit" onclick="thanks.html">
-          </form> 
+        <label for="submitButton">
+            <input type="submit" value="Submit" name="submitButton" id="submit" onclick="thanks.html"></label>
+          </form> <br>
     </div>
     <footer>
         <div id="footerContent">
