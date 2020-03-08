@@ -17,6 +17,7 @@ fetch(requestURL)
         let rainFall = document.createElement('pre');
         let townImage = document.createElement('img');
         let events = document.createElement('h3');   
+        let div = document.createElement('div');
         events.setAttribute('style', 'white-space: pre;');
         
         townName.textContent = town.name;
@@ -36,13 +37,15 @@ fetch(requestURL)
             events.textContent += '\r\n' + town.events[3];
 
 
-        townHolder.appendChild(townName);
-        townHolder.appendChild(motto);
-        townHolder.appendChild(founded);
-        townHolder.appendChild(population);
-        townHolder.appendChild(rainFall);
+        div.appendChild(townName);
+        div.appendChild(motto);
+        div.appendChild(founded);
+        div.appendChild(population);
+        div.appendChild(rainFall);
+    
+        //div.appendChild(events);
+        townHolder.appendChild(div);
         townHolder.appendChild(townImage);
-        townHolder.appendChild(events);
 
 
         document.querySelector('div.towns').appendChild(townHolder);

@@ -1,13 +1,16 @@
 @media only screen and (min-width: 560px) {
 
 	.towns {
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr ;
 	}
 
 	.towns section{
-		background-color: rgb(221, 253, 221);
-
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 	  }
+	.towns section:nth-child(even){
+		direction: rtl;
+	}
 
 	  
 	/*------------nav change------------*/  

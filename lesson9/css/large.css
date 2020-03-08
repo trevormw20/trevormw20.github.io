@@ -3,7 +3,7 @@
         grid-template-columns: 1fr 1fr 1fr;
     }
     .towns section{
-        background-color: pink;
+        display:block;
     }
 
 }
