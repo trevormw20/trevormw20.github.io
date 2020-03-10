@@ -6,8 +6,11 @@ fetch(requestURL)
   })
   
   .then(function (jsonObject) {
-    const towns = jsonObject['towns'];
+    const onlyShow = jsonObject['towns'];
     console.table(jsonObject);
+
+    let towns = [onlyShow[2], onlyShow[0], onlyShow[5]];
+
     towns.forEach(town => {
         let townHolder = document.createElement('section');
         let townName = document.createElement('h1');
