@@ -1,0 +1,141 @@
+body {
+  margin: 0px;
+  background:linear-gradient( rgb(255, 250, 223) 25%,
+            rgb(241, 231, 173) 25%, rgb(241, 231, 173) 50%,
+            rgb(248, 214, 120) 25%, rgb(248, 214, 120) 75%,
+            rgb(250, 189, 97) 0%) no-repeat;
+  color:rgb(52, 134, 201);
+}
+
+.deepBlue { background-color: #189fdd;  color: #fff; }
+.centerContent {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+/*---------------nav--------------*/
+#LogoPicture { max-width: 100px;  float: left; }
+#navigation { list-style: none;  padding: 0; }
+#navigation li:first-child { display: block; }
+#navigation li { display: none; }
+#navigation a {
+	display: block;
+	padding: 0.75rem;
+	text-align: left;
+	text-decoration: none;
+}
+#navigation a:hover { background-color: rgb(52, 134, 201); }
+.responsive li { display: block; }
+.active{ background-color: rgb(52, 134, 201); }
+
+/*------------------Body------------------*/
+#mainContent {
+  background: rgb(232, 249, 255);
+  box-shadow: 0px 8px 15px 0px #c2b151;
+  margin-top: -16px;
+}
+
+#article img{
+  max-width: 80%;
+  border: 1px solid lightgrey;
+  float: none;
+}
+.weeklyEventsShow{
+  display: flex;
+  justify-content: center;
+  padding: 0.5em;
+  background-color: rgb(250, 189, 97);
+  color: black;
+  box-shadow: 0px 2px 15px -5px rgb(214, 204, 144);
+  font-size: 1.5em;
+}
+.weeklyEventsHide{ display: none; }
+
+/*-----------------weather----------------*/
+#weather { position: relative; text-align: center;}
+#weather img{
+  float: left;
+  max-width: 100%;
+  border: 1px solid #d3d3d3;
+}
+
+/*-----------weather summary ----------*/
+#weatherSummary {
+  position: absolute;
+  top: 0.5em;
+  left: 0.5em;
+  font-size: medium;
+  padding: 0.2em;
+  max-width: 30%;
+  min-width: 170px;
+  height: auto;
+  background-color: rgba(255, 250, 223, 0.767);
+  box-shadow: 0px 5px 5px 0px rgb(75, 75, 75);
+}
+
+.summarySpecial{ color: rgb(70, 70, 70); }
+
+  /*----------- 5 day forecast----------*/
+#weatherForecast { display: none; }
+#show { display: none; }
+
+/*------------bottom Content---------------*/
+#bottomContent {
+  background: rgb(251, 254, 255);
+  box-shadow: 0px 0px 15px -4px #c2b151;
+}
+#bottomContent img { display: none; }
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 1%;
+}
+
+/*------------Town cards------------------*/
+#wireframe {
+  border-radius: 12px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #f9fdff;
+  font-size: large;
+  border: 2px solid #189fdd;
+}
+
+#towns{display: grid; grid-template-columns: 1f;
+  margin: 0 auto; text-align: center;}
+
+#towns section{
+  background-color: rgb(232, 249, 255);
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+#towns section img {
+  width: 80%;
+  height: auto;
+  margin-top: 10px;
+  box-shadow: 0px 0px 7px 0px rgb(19, 60, 107);
+}
+ 
+#events {
+  background-color: rgb(52, 134, 201);
+  color: white;
+  padding: 10px;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+/*----------------- Form ----------*/
+fieldset {width: 30%;}
+
+#submit {
+  border-radius: 8px;
+  color: white;
+  border: none;
+  background-color: #189fdd;
+  padding: 5px;
+  
+}

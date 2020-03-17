@@ -1,0 +1,78 @@
+@media only screen and (min-width: 560px) {
+  .centerContent {
+    margin-left: 5em;
+    margin-right: 5em;
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+
+  #weeklyEvents{font-size: 120%;}
+
+  /*----------Weather--------------*/
+  #weatherSummary {
+    max-width: 300px;
+    top: 2em;
+    left: 2em;
+    font-size: large;
+    padding: 0.7em;
+    }
+  #weather img{margin-right: 100em;}
+
+  /*----------Contact / map--------------*/
+  #bottomContent {height: 350px; position: relative;}
+    
+  #bottomContent img {
+    display: flex;
+    top: 10%;
+    right: 10%;
+    bottom: 10%;
+    width: 500px;
+    max-height: 80%;
+    max-width: 60%;
+    position: absolute;
+    overflow: auto;
+  }
+
+  /*---------------Navigation bar---------------------*/
+  #navigation {display: flex; max-width: 5em;}
+
+	#navigation li {display: block; flex: 1 1 100%;}
+  
+	#navigation li a {color: #fff; text-align: center;}
+	
+	#navigation li:first-child {display: none;}
+  
+  /*----------- 5 day forecast----------*/
+  #show {
+      display: grid;
+      padding: 0.1em;
+      padding-top: 1em;
+      padding-bottom: 0;
+      margin-bottom: 0;
+  }
+  #weatherForecast {
+      border: 1px solid lightgrey;
+      display: grid;
+      grid-template:  25% 60% 15%/ 20% 20% 20% 20% 20%;
+      text-align: center;
+      box-shadow: 0px 0px 15px -5px grey;
+      background-color: rgb(253, 245, 196)
+  }
+  #weatherForecast p {
+    margin: 0;
+    padding: 10px;
+    border: 1px solid lightgrey;
+  }
+
+  /*-----------------article info-------------------*/
+  #article{position: relative; height: 435px;}
+  
+  #article img{float: right;}
+
+  /*----------------Town cards------------------*/
+  #towns {grid-template-columns: 1fr;}
+
+  #towns section{display: grid; grid-template-columns: 1fr 1fr;}
+  #towns section:nth-child(even){direction: rtl;}
+}
+
