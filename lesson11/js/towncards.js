@@ -9,7 +9,6 @@ fetch(requestURL)
     const onlyShow = jsonObject['towns'];
     console.table(jsonObject);
 
-    //let towns = [onlyShow[2], onlyShow[0], onlyShow[5]];
     let towns = [onlyShow[0], onlyShow[5], onlyShow[2]];
 
     towns.forEach(town => {
@@ -34,9 +33,9 @@ fetch(requestURL)
         events.setAttribute('id', 'events');
         if (town.events[0] != null){
           events.textContent = "Upcoming Events" + '\r\n' + '&nbsp';
-            events.textContent += town.events[0];
+          events.textContent += town.events[0];
         }
-            if (town.events[1] != null)
+        if (town.events[1] != null)
             events.textContent += '\r\n' + town.events[1];
         if (town.events[2] != null)
             events.textContent += '\r\n' + town.events[2];
