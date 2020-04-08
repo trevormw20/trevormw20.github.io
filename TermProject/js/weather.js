@@ -20,6 +20,7 @@ cityURL = "//api.openweathermap.org/data/2.5/weather?lat=34.0507&lon=-88.2528&ap
     let iconcode = weatherInfo.weather[0].icon;
     let iconPath = "//openweathermap.org/img/w/" + iconcode + ".png";
     icon.src=iconPath;
+    icon.setAttribute('alt', "Weahter Condition Icon");
 
     weatherBox.appendChild(icon);
     weatherBox.appendChild(condition);
@@ -29,31 +30,5 @@ cityURL = "//api.openweathermap.org/data/2.5/weather?lat=34.0507&lon=-88.2528&ap
     weatherBox.appendChild(humidity);
 
     document.getElementById('weather').appendChild(weatherBox);
-/*
-    for (i=0; i<mylist.length; i++) {
-      let time = mylist[i].dt_txt;
-
-      if (time.includes('21:00:00')) {
-        forecastDayNumber += 1;
-        if (forecastDayNumber === 7){forecastDayNumber = 0};
-        let theDayName = document.createElement("p");
-        theDayName.textContent = weekDay[forecastDayNumber];
-
-        let theTemp = document.createElement("p");
-        theTemp.textContent = weatherInfo.list[i].main.temp + "\xB0";
-
-        let iconcode = weatherInfo.list[i].weather[0].icon;
-        let iconPath = "//openweathermap.org/img/w/" + iconcode + ".png";
-        let theIcon = document.createElement("img");
-        theIcon.src=iconPath;
-
-        let theDay = document.createElement("div");
-        //theDay.appendChild(theDayName);
-        theDay.appendChild(theTemp);
-        theDay.appendChild(theIcon);
-
-        document.getElementById('weather').appendChild(theDay);
-      }
-    }*/
   }  
 );

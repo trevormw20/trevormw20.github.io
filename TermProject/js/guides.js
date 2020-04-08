@@ -1,4 +1,3 @@
-//const requestURL = 'https://trevormw20.github.io/TermProject/json/guides.json';
 const requestURL = 'json/guidesInfo.json';
 fetch(requestURL)
   .then(function (response) {

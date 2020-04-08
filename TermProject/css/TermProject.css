@@ -1,36 +1,22 @@
-/*
+@media only screen and (min-width: 560px) {
+    /*---------------Navigation bar---------------------*/
+	.navigation {display: flex;}
+	.navigation li {display: block; /* needed because of state in small view */}
+	.navigation li:first-child {display: none;}
+	/*------------Reservation page------------*/
+	.resText{
+		/*max-width: 70%;	*/
+	}
+	.guides {grid-template-columns: 1fr 1fr;}
+	.guides sections {max-width: 450px;}
+	body {margin: 0 4rem 0 4rem;}
+}
+@media only screen and (min-width: 1029px) {
+    .guides {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
 
----------------------------------INFO-----------------------------
-
--- The content is fictitious, but the site should be complete without 
-    any placeholders nor nonsense language nor development output. 
-    You will be creating a basic, working web site containing relevant 
-    and reasonable information. 
-
--- The images and brief verbiage may be referenced from other 
-    sources which will need to be cited in a resource reference page.
-
-    ---------------------------REQUIRED--------------------------
--- Ensure that each page weight does not exceed the ~500k benchmark.
-
--- Check your page against the Chrome DevTools audit (Links to an 
-    external site.) in the areas of performance, accessibility, best 
-    practice, and SEO to find low hanging fruit with items that are 
-    related to the course standards.
-
-
--- Do not place a link on your course portal home page. Just submit 
-    your project URL directly.
-
-*/
-
-/* 
-//dark blue #467AB3
-//light blue #96c9ff
-//blue #7dbcff
-//brown #b38434
-//yello #ffcf7d
-*/
+}
 
 .center{
     padding-left: 2rem;
@@ -85,18 +71,6 @@ footer{
     padding-bottom: 10px;
     text-align: center;
 }
-
-#stick{position: -webkit-sticky; position: sticky; top: 0;}
-#stickyButton {
-    background-color: #4CAF50; /* Green */
-    color: white;
-    padding: 15px 32px;
-    margin: 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-  }
 
   /*------------Reservation page------------*/
   .resText{
