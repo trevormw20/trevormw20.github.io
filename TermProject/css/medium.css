@@ -1,0 +1,12 @@
+
+@media only screen and (min-width: 560px) {
+    /*---------------Navigation bar---------------------*/
+	.navigation {display: flex;}
+	.navigation li {display: block; /* needed because of state in small view */}
+	.navigation li:first-child {display: none;}
+	/*------------Reservation page------------*/
+	.resText{
+		max-width: 70%;	
+	}
+}
+

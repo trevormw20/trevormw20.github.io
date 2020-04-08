@@ -1,0 +1,159 @@
+/*
+
+---------------------------------INFO-----------------------------
+
+-- The content is fictitious, but the site should be complete without 
+    any placeholders nor nonsense language nor development output. 
+    You will be creating a basic, working web site containing relevant 
+    and reasonable information. 
+
+-- The images and brief verbiage may be referenced from other 
+    sources which will need to be cited in a resource reference page.
+
+    ---------------------------REQUIRED--------------------------
+-- Ensure that each page weight does not exceed the ~500k benchmark.
+
+-- Check your page against the Chrome DevTools audit (Links to an 
+    external site.) in the areas of performance, accessibility, best 
+    practice, and SEO to find low hanging fruit with items that are 
+    related to the course standards.
+
+-- Ensure that there are no spelling or grammatical errors.
+
+-- Include a resource page that references outside content, if 
+    necessary, as a link in the footer.
+
+-- Do not place a link on your course portal home page. Just submit 
+    your project URL directly.
+
+*/
+
+/* 
+//dark blue #467AB3
+//light blue #96c9ff
+//blue #7dbcff
+//brown #b38434
+//yello #ffcf7d
+*/
+
+.center{
+    padding-left: 2rem;
+    padding-right: 2rem;
+    background-color: #ffcf7d;
+    box-shadow: 1px 1px 5px 3px #b38434;
+    border-radius: 8px;}
+#LogoPicture { max-width: 100px;  float: left; padding-right: 30px;}
+
+/*---------------Navigation bar--------------*/
+  .navigation {background-color: #b38434; padding: 0; border-radius: 8px; margin-bottom: 1px;}
+  .navigation li:first-child {display: block;}
+  .navigation li {display: none;}
+  .navigation a {
+    display: block;
+    white-space: nowrap;
+    color: #fff;
+    padding: 0.75rem;
+    text-align: left;
+    text-decoration: none;}
+  .navigation a:hover {color: #fff; background-color: #467AB3;}
+  .responsive li {display: block;}
+  .active{background-color: #7dbcff;}
+
+
+/*------------------Body-----------------*/
+body {
+    background-color: #7dbcff;
+    color: #b38434;
+    margin-left: 4rem;
+    margin-right: 4rem;
+}
+.raftingIMG {
+    border-radius: 8px; border: 2px solid #b38434; width: 100%;
+}
+#intro{
+    margin: 5px;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #b38434;
+    color: #96c9ff;
+}
+h1 {font-family: 'Lobster', cursive;}
+h2 {font-family: 'Lobster', cursive;}
+
+main {font-family: 'Montserrat', sans-serif;}
+
+footer{
+    margin-top: 10px;
+    margin-bottom:10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+#stick{position: -webkit-sticky; position: sticky; top: 0;}
+#stickyButton {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 15px 32px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
+  /*------------Reservation page------------*/
+  .resText{
+    border-radius: 8px; border: 2px solid #b38434;
+    background-color: #96c9ff;
+    color: #467AB3;
+    font-size: 16px;
+    padding: 1rem;
+    min-width: 90%;
+
+  }
+  #submit{
+      background-color: #7dbcff;
+      border-radius: 8px; border: 2px solid #467AB3;
+      color: #b38434;
+      margin: 10px;
+      padding: 8px 20px;
+      font-size: large;
+      font-family: 'Lobster', cursive;
+  }
+
+  /*------------text over image------------*/
+  .imgTxtcontainer{
+      position: relative; border-radius: 8px; 
+      border: 2px solid #b38434; width: 100%}
+
+  .txtImage{opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;}
+
+    .middle {
+        transition: .5s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        max-height: 100%;}
+      
+      .imgTxtcontainer:hover .txtImage {opacity: 0.3;}
+      
+      .imgTxtcontainer:hover .middle {opacity: 1;}
+      
+      .text {
+          max-height: 100%;
+        border-radius: 8px; border: 2px solid #b38434;
+        background-color: #96c9ff;
+        color: #467AB3;
+        font-size: 16px;
+        padding: 5px;}
+    

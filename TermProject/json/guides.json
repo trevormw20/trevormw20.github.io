@@ -1,0 +1,49 @@
+{
+    "guides": [
+      {
+        "name": "James",
+        "lastname": "Wilson",
+        "experience": "10",
+        "email": "jameswilson@rafting.com",
+        "bio": "test",
+        "imageurl": "https://trevormw20.github.io/TermProject/images/guide1.jpg",
+        "certificate": "https://trevormw20.github.io/TermProject/images/certificate1.jpg"
+      },
+      {
+        "name": "Kyle",
+        "lastname": "Right",
+        "experience": "5",
+        "email": "kyleright@rafting.com",
+        "bio": "test",
+        "imageurl": "https://trevormw20.github.io/TermProject/images/guide2.jpg",
+        "certificate": "https://trevormw20.github.io/TermProject/images/certificate2.jpg"
+      },
+      {
+        "name": "Emma",
+        "lastname": "Johnson",
+        "experience": "3",
+        "email": "emmajohnson@rafting.com",
+        "bio": "test",
+        "imageurl": "https://trevormw20.github.io/TermProject/images/guide3.jpg",
+        "certificate": "https://trevormw20.github.io/TermProject/images/certificate2.jpg"
+      },
+      {
+        "name": "Wayne",
+        "lastname": "Riggs",
+        "experience": "20",
+        "email": "wayneriggs@rafting.com",
+        "bio": "test",
+        "imageurl": "https://trevormw20.github.io/TermProject/images/guide4.jpg",
+        "certificate": "https://trevormw20.github.io/TermProject/images/certificate1.jpg"
+      },
+      {
+        "name": "Jamie",
+        "lastname": "Dunn",
+        "experience": "8",
+        "email": "jamiedunn@rafting.com",
+        "bio": "test",
+        "imageurl": "https://trevormw20.github.io/TermProject/images/guide5.jpg",
+        "certificate": "https://trevormw20.github.io/TermProject/images/certificate3.jpg"
+      }
+    ]
+}
