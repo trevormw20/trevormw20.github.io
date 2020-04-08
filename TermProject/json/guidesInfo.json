@@ -5,45 +5,45 @@
         "lastname": "Wilson",
         "experience": "10",
         "email": "jameswilson@rafting.com",
-        "bio": "test",
-        "imageurl": "https://trevormw20.github.io/TermProject/images/guide1.jpg",
-        "certificate": "https://trevormw20.github.io/TermProject/images/certificate1.jpg"
+        "bio": "He keeps us safe but has the most fun.",
+        "imageurl": "images/guide1.jpg",
+        "certificate": "images/cert1.jpg"
       },
       {
         "name": "Kyle",
         "lastname": "Right",
         "experience": "5",
         "email": "kyleright@rafting.com",
-        "bio": "test",
-        "imageurl": "https://trevormw20.github.io/TermProject/images/guide2.jpg",
-        "certificate": "https://trevormw20.github.io/TermProject/images/certificate2.jpg"
+        "bio": "Strong and can get the team out of any situation.",
+        "imageurl": "images/guide3.jpg",
+        "certificate": "images/cert2.jpg"
       },
       {
         "name": "Emma",
         "lastname": "Johnson",
         "experience": "3",
         "email": "emmajohnson@rafting.com",
-        "bio": "test",
-        "imageurl": "https://trevormw20.github.io/TermProject/images/guide3.jpg",
-        "certificate": "https://trevormw20.github.io/TermProject/images/certificate2.jpg"
+        "bio": "Kindest of them all and a great teacher.",
+        "imageurl": "images/guide5.jpg",
+        "certificate": "images/cert2.jpg"
       },
       {
         "name": "Wayne",
         "lastname": "Riggs",
         "experience": "20",
         "email": "wayneriggs@rafting.com",
-        "bio": "test",
-        "imageurl": "https://trevormw20.github.io/TermProject/images/guide4.jpg",
-        "certificate": "https://trevormw20.github.io/TermProject/images/certificate1.jpg"
+        "bio": "Most experienced of them and all.",
+        "imageurl": "images/guide2.jpg",
+        "certificate": "images/cert1.jpg"
       },
       {
         "name": "Jamie",
         "lastname": "Dunn",
         "experience": "8",
         "email": "jamiedunn@rafting.com",
-        "bio": "test",
-        "imageurl": "https://trevormw20.github.io/TermProject/images/guide5.jpg",
-        "certificate": "https://trevormw20.github.io/TermProject/images/certificate3.jpg"
+        "bio": "Knows every secret of the trade of fun and a little song.",
+        "imageurl": "images/guide4.jpg",
+        "certificate": "images/cert1.jpg"
       }
     ]
 }

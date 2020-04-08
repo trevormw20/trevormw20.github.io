@@ -6,7 +6,17 @@
 	.navigation li:first-child {display: none;}
 	/*------------Reservation page------------*/
 	.resText{
-		max-width: 70%;	
+		/*max-width: 70%;	*/
 	}
+	.guides {grid-template-columns: 1fr 1fr;}
+	.guides sections {max-width: 450px;}
+	body {margin: 0 4rem 0 4rem;}
 }
+@media only screen and (min-width: 1029px) {
+    .guides {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+}
+
 

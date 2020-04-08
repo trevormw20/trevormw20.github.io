@@ -1,6 +1,5 @@
 //const requestURL = 'https://trevormw20.github.io/TermProject/json/guides.json';
 const requestURL = 'json/guidesInfo.json';
-
 fetch(requestURL)
   .then(function (response) {
     return response.json();
@@ -18,21 +17,21 @@ fetch(requestURL)
         let bio = document.createElement('pre');
         
         
-        h2.textContent = guide.name + ' ' + guide.lastname;
-        //image.setAttribute('src', guide.imageurl);
-       // image.setAttribute('alt', name);
-        //certificate.setAttribute('src', guide.certificate);
-        //certificate.setAttribute('alt', name);
-        //experience.textContent = 'Years of Experience: ' + guide.experience;
-        //email.textContent = 'Email Address: ' + guide.email;
-       // bio.textContent = 'Biography: ' + guide.bio;
+        name.textContent = guide.name + ' ' + guide.lastname;
+        image.setAttribute('src', guide.imageurl);
+        image.setAttribute('alt', name);
+        certificate.setAttribute('src', guide.certificate);
+        certificate.setAttribute('alt', name);
+        experience.textContent = 'Years of Experience: ' + guide.experience;
+        email.textContent = 'Email Address: ' + guide.email;
+        bio.textContent = 'Biography: ' + guide.bio;
 
         guideBox.appendChild(name);
-       // guideBox.appendChild(image);
-       // guideBox.appendChild(certificate);
-       // guideBox.appendChild(experience);
-      //  guideBox.appendChild(email);
-      //  guideBox.appendChild(bio);
+        guideBox.appendChild(image);
+        guideBox.appendChild(certificate);
+        guideBox.appendChild(experience);
+        guideBox.appendChild(email);
+        guideBox.appendChild(bio);
 
         document.querySelector('div.guides').appendChild(guideBox);
     });

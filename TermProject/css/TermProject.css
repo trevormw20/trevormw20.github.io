@@ -18,10 +18,6 @@
     practice, and SEO to find low hanging fruit with items that are 
     related to the course standards.
 
--- Ensure that there are no spelling or grammatical errors.
-
--- Include a resource page that references outside content, if 
-    necessary, as a link in the footer.
 
 -- Do not place a link on your course portal home page. Just submit 
     your project URL directly.
@@ -64,8 +60,8 @@
 body {
     background-color: #7dbcff;
     color: #b38434;
-    margin-left: 4rem;
-    margin-right: 4rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
 }
 .raftingIMG {
     border-radius: 8px; border: 2px solid #b38434; width: 100%;
@@ -110,7 +106,7 @@ footer{
     font-size: 16px;
     padding: 1rem;
     min-width: 90%;
-
+    max-width: 800px;
   }
   #submit{
       background-color: #7dbcff;
@@ -124,12 +120,14 @@ footer{
 
   /*------------text over image------------*/
   .imgTxtcontainer{
+    max-width: 800px;
       position: relative; border-radius: 8px; 
       border: 2px solid #b38434; width: 100%}
 
   .txtImage{opacity: 1;
     display: block;
     width: 100%;
+    
     height: auto;
     transition: .5s ease;
     backface-visibility: hidden;}
@@ -156,4 +154,34 @@ footer{
         color: #467AB3;
         font-size: 16px;
         padding: 5px;}
-    
+
+        /*--------------Guides------------------*/
+        .guides {
+            max-width: 90%;
+            display: grid;
+            grid-template-columns: 1fr;
+            /*grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));*/
+        }
+        .guides section {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            margin: 0.5rem;
+            padding: 0.5rem;
+            background-color: #96c9ff;
+            text-align: center;
+            color: #467AB3;
+            border-radius: 8px; border: 2px solid #b38434;
+            max-width: 350px;
+        }
+
+        .guides section img {
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+            display: block;
+            width: 60%;
+            height: auto;
+            margin-top: 10px;
+            box-shadow: 0px 0px 7px 0px #467AB3;
+        }
