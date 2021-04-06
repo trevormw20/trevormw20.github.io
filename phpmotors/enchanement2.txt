@@ -1,0 +1,24 @@
+-- Query 1 Good
+INSERT INTO clients (clientFirstname, clientLastname, clientEmail, clientPassword, comment) 
+VALUES ('Tony', 'Stark', 'tony@starkent.com', 'Iam1ronM@n', "I am the real Ironman");
+
+-- Query 2 Good
+UPDATE clients SET clientLevel = 3 WHERE clientFirstName = "Tony" AND clientLastname = "Stark";
+
+-- Query 3 Good
+UPDATE inventory SET invDescription = "small interior" WHERE invModel = "GM Hummer";
+
+-- Query 4 Good
+SELECT invModel, classificationName
+FROM inventory
+INNER JOIN carclassification 
+ON inventory.classificationId = carclassification.classificationId
+WHERE carclassification.classificationName = "SUV";
+
+-- Query 5 Good
+DELETE FROM inventory WHERE invMake = "Jeep" AND invModel = "Wrangler";
+
+-- Query 6 Good
+UPDATE inventory SET 
+invThumbnail = CONCAT('/phpmotors',invThumbnail), 
+invImage = CONCAT('/phpmotors',invImage);

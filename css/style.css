@@ -1,8 +1,86 @@
-body {
-    padding: 2em;
-    background-color: rgb(58, 106, 160);
+
+h2 {
+    text-align: center;
 }
 
-#secondBackground {
-    background-color: cornsilk;
+#me {
+    width: 100%;
+  height: auto;
+
+  /* Try this 
+  when at the 
+  end 
+  transform: scaleX(-1); */
 }
+
+.stripesDivider {
+    background-image: url("../images/stripesSideways.png") ;
+    transform: scaley(3);
+    background-size: contain;
+}
+
+.whiteBack {background-color:#F3F5F2; margin: 0}
+.lightBlueBack {background-color:#B2D1D6}
+.beigeBack {background-color:#DFDCC9}
+.redBack {background-color:#CA3032}
+.darkblueBack {background-color: #32586D}
+
+.blueStripe {
+    height: 10px; 
+    border-width: 0; 
+    color: #32586D; 
+    background-color: #32586D;
+    box-shadow: 0px 1px 5px 0.2px  #45728a ;
+}
+.beigeStripe {
+    height: 10px; 
+    border-width: 0; 
+    color: #DFDCC9; 
+    background-color: #DFDCC9;
+    box-shadow: 0px 1px 5px 0.2px  #e7e6da ;
+}
+.redStripe {
+    height: 10px; 
+    border-width: 0; 
+    color: #CA3032; 
+    background-color: #CA3032;
+    box-shadow: 0px 1px 5px 0.2px  #da4749 ;
+}
+
+.sansFont{font-family: 'Source Sans Pro', sans-serif;}
+.lobsterFont{font-family: 'Lobster Two', cursive;}
+
+header {
+    background-color: #32586D;
+    color: #F3F5F2;
+    padding: 1em;
+    box-shadow: 0px 1px 10px  #163b4e ;
+    font-size: xx-small;
+
+    position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+header h1{
+    margin-top: 0;
+}
+
+#showcase{
+    display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.leftShowcase{
+}
+.rightShowcase{
+}
+
+.showcaseWheels{
+    margin: 3em;
+}
+
+
+.change .two{display:none}
+.change:hover .one{display:none}
+.change:hover .two{display:inline}

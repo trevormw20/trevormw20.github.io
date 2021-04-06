@@ -1,0 +1,179 @@
+/*Colors
+light grey #bababa
+grey #8d8d8d
+light blue #a6cbeb
+blue #4c96d7
+dark grey #3a3a3a 
+white #ffffff
+*/
+
+html { 
+	font-family: 'Raleway', sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+nav ul {
+	list-style-type: none;
+	background-color: #3a3a3a;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+nav li {
+	float: left;
+	padding: 0.2em;
+}
+
+nav li a {
+	display: block;
+	text-decoration: none;
+	color: #ffffff;
+	text-align: center;
+	padding: 1em 0.3em;
+	font-weight: 700;
+}
+
+li a:hover {
+	background-color: #4c96d7;
+	color: black;
+}
+
+#signIn {
+	float: right;
+	display: block;
+	text-decoration: none;
+	color: #3a3a3a;
+	font-weight: 700;
+	font-size: large;
+	padding: 1em;
+}
+
+main {
+	padding: 0.5em;
+}
+
+#ownToday {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+}
+
+#carDescription {
+	position: relative;
+	color: #4c96d7;
+}
+#carDescription h4 {
+	padding:0;
+	margin:0;
+}
+#carDescription p{
+	font-weight: 500;
+	padding:0;
+	margin:0;
+}
+
+#textOverImage {
+	position: absolute;
+ 	top: 0px;
+  	left: 0px;
+}
+
+#carDescription img:first-of-type {
+	padding: 1em;
+	width: 90%;
+	height: auto;
+}
+
+#upgradesFlex {
+	display: flex;
+	flex-wrap: wrap;
+	height: 17em;
+	justify-content: space-around;
+	color: #bababa;
+}
+
+#upgradesFlex img{
+	background-color:#4c96d7;
+	padding: 0.5em 3em;
+	margin: 0.5em;
+	border: 2px solid #1d86e2;
+}
+
+
+main li {
+	padding: 0.5em;
+}
+
+footer {
+	text-align: center;
+	line-height: 1em;
+}
+footer p {
+	padding: 0.5em;
+	color:#3a3a3a
+}
+
+footer hr {
+	color: #3a3a3a ;
+	border: 2px solid #3a3a3a ;
+}
+
+
+
+@media only screen and (min-width: 600px) {
+	html {background-image: url("../images/site/small_check.jpg");}
+	body {
+		background-color: #ffffff;
+		margin: 1em 12em 5em 12em;
+	  	border: 5px solid #4c96d7;
+	  	border-radius: 0.7%;
+	}
+
+	#textOverImage {
+		position: absolute;
+		top: 1em;
+		left: 2em;
+		font-size: x-large;
+	}
+	#ownToday {
+		position: absolute;
+		top: 12em;
+		left: 3em;
+		width: 13%;
+	}
+
+	main h3 {
+		font-size: xx-large;
+	}
+	
+	#grid-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		justify-content: space-between;
+	}
+
+	#reviews{
+		order: 2;
+		font-size: x-large;
+	}
+	
+	#upgradesFlex {
+		height: 23em;
+		justify-content: center;
+	}
+	#upgradesFlex a{
+		margin: 0em 6em;
+	}
+	#upgradesFlex img{
+		padding: 0.2em 7em;
+	}
+	#upgradesBox h3 {
+		padding: 0 0 0 2em;
+	}
+
+}
