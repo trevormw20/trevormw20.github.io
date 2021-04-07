@@ -1,23 +1,21 @@
 
 h2 {
     text-align: center;
+    color: #CA3032; 
+    text-decoration: underline  wavy #32586D;
 }
+
 
 #me {
     width: 100%;
-  height: auto;
-
+    height: auto;
+  
   /* Try this 
   when at the 
   end 
   transform: scaleX(-1); */
 }
 
-.stripesDivider {
-    background-image: url("../images/stripesSideways.png") ;
-    transform: scaley(3);
-    background-size: contain;
-}
 
 .whiteBack {background-color:#F3F5F2; margin: 0}
 .lightBlueBack {background-color:#B2D1D6}
@@ -56,10 +54,11 @@ header {
     padding: 1em;
     box-shadow: 0px 1px 10px  #163b4e ;
     font-size: xx-small;
+    text-align: center;
 
     position: -webkit-sticky; /* Safari */
-  position: sticky;
-  top: 0;
+    position: sticky;
+    top: 0;
 }
 
 header h1{
@@ -67,20 +66,60 @@ header h1{
 }
 
 #showcase{
-    display: flex;
-  flex-wrap: wrap;
-  align-content: center;
+
+    font-size: x-large;
+    font-weight: bolder;
+    color: #32586D; 
 }
 .leftShowcase{
+    text-align: center;
 }
 .rightShowcase{
+    text-align: center;
 }
 
 .showcaseWheels{
-    margin: 3em;
+    margin-bottom: 3em;
 }
+
+.summary {
+    margin: 1.5em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+footer{
+    font-size: small;
+    text-align: center;
+}
+
 
 
 .change .two{display:none}
 .change:hover .one{display:none}
 .change:hover .two{display:inline}
+
+@media only screen and (min-width: 600px) {
+    .summary {
+        max-width: 500px;
+        margin: auto;
+        padding-top: 2em;
+        padding-bottom: 2em;
+    }
+
+    .leftShowcase{
+        float: left;
+        width: 50%;
+    }
+    .rightShowcase{
+        float: right;
+        width: 50%;
+    }
+
+    h2{font-size: xx-large;
+    }
+
+    .showcaseWheels{
+        margin-bottom: 5em;
+    }
+
+}
