@@ -99,6 +99,12 @@ body.night #table::before{content:"";position:absolute;inset:0;background:rgba(8
 @keyframes deckp{50%{box-shadow:0 1px 0 #000,2px 2px 0 #1a1917,3px 3px 0 #2a2723,4px 4px 0 #11100e,0 0 0 3px rgba(232,167,60,.65),0 0 22px rgba(232,167,60,.45)}}
 #pDisc{background:transparent;box-shadow:none;outline:1.5px dashed rgba(236,230,216,.22)}
 #pDisc .top{position:absolute;inset:0;border-radius:6px;background:center/cover;opacity:.55;filter:grayscale(.5)}
+#pDisc{cursor:pointer}
+.dcounts{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
+.dcounts span{font:700 11px/1 var(--f-label);letter-spacing:.1em;text-transform:uppercase;padding:6px 8px;border-radius:7px;background:var(--chip);border:1px solid var(--line);color:var(--hud)}
+.dgrid{display:grid;grid-template-columns:repeat(3,var(--cw));gap:8px;justify-content:center;margin-bottom:4px}
+.dcell{position:relative;width:var(--cw);height:var(--ch);padding:0;border:0;background:none}
+.dcell .card{transform-origin:0 0;transition:none}
 
 /* ---------- phase bar ---------- */
 #bar{position:absolute;z-index:950;display:flex;align-items:center;gap:10px;padding:9px 10px 9px 13px;border-radius:13px;
@@ -319,7 +325,7 @@ body.night #table::before{content:"";position:absolute;inset:0;background:rgba(8
   <div class="zlabel" id="foundLbl">Found</div>
   <button class="pile" id="pDeck" aria-label="Survival deck: tap to draw"><span class="ct"></span><span class="nm">Survival</span></button>
   <div class="pile" id="pNoise"><span class="ct"></span><span class="nm">Noise</span></div>
-  <div class="pile" id="pDisc"><span class="top"></span><span class="ct"></span><span class="nm">Discard</span></div>
+  <button class="pile" id="pDisc" aria-label="Discard pile: tap to see it"><span class="top"></span><span class="ct"></span><span class="nm">Discard</span></button>
   <div id="bar"><div class="bt"><h2></h2><p></p></div><div class="btns"></div></div>
   <div class="cap" id="capW" hidden></div>
   <div class="cap" id="capP" hidden></div>
@@ -580,7 +586,7 @@ let REC = load('holdout.records', {games:0, stars:0, end:{}});
 
 function fresh(){
   return {v:1, phase:'idle', day:1, health:8, maxHealth:8, hunger:0, ammo:2, infected:false, surv:null, diff:'normal',
-    deck:[], noise:[], discard:[], out:[], horde:[], found:[], weapons:[], pack:[], drawn:0, quiet:false, stopNow:false,
+    deck:[], noise:[], discard:[], out:[], horde:[], found:[], events:[], weapons:[], pack:[], drawn:0, quiet:false, stopNow:false,
     fight:null, prompt:null, limit:null, uid:1, artc:{}, stats:{kills:0, drawn:0, days:0}, ending:null};
 }
 function inst(id){
@@ -588,6 +594,8 @@ function inst(id){
   return {u:G.uid++, id, art:arr[n % arr.length], dmg:0, barr:false, wear:0};
 }
 const handCards = () => G ? [...G.weapons, ...G.pack] : [];
+const evs = () => G ? (G.events || (G.events = [])) : [];
+const trayCards = () => G ? [...G.found, ...evs()] : [];
 const findAny = u => handCards().find(c => c.u === u);
 const zBy = u => G.horde.find(z => z.u === u);
 const nonKnife = () => G.weapons.filter(w => w.id !== 'S01').length;
@@ -793,10 +801,10 @@ function hordeLayout(){
   return out;
 }
 function foundLayout(){
-  const n = G.found.length, R = Z.found, out = new Map(); if (!n) return out;
+  const list = trayCards(), n = list.length, R = Z.found, out = new Map(); if (!n) return out;
   const cw = CW * TS, sp = n > 1 ? Math.min(cw + 6, (R.w - cw) / (n - 1)) : 0;
   const span = sp * (n - 1) + cw, x0 = R.x + (R.w - span) / 2 + cw / 2;
-  G.found.forEach((c, i) => out.set(c.u, {x:x0 + i * sp, y:R.y + R.h / 2, s:TS, r:((c.u * 13) % 5 - 2) * .8, z:60 + i}));
+  list.forEach((c, i) => out.set(c.u, {x:x0 + i * sp, y:R.y + R.h / 2, s:TS, r:((c.u * 13) % 5 - 2) * .8, z:60 + i}));
   return out;
 }
 function handLayout(){
@@ -819,7 +827,7 @@ function render(){
   if (!G) return;
   const want = new Map([...hordeLayout(), ...foundLayout(), ...handLayout()]);
   for (const [u, el] of els){ if (!want.has(u) && !floating.has(u)){ el.classList.add('gone'); setTimeout(() => { if (els.get(u) === el && !floating.has(u) && !onTable(u)) removeEl(u); }, 400 * SPEED); } }
-  const all = [...G.horde, ...G.found, ...handCards()];
+  const all = [...G.horde, ...trayCards(), ...handCards()];
   const F = G.fight, selC = SEL ? findAny(SEL) : null;
   for (const c of all){
     if (floating.has(c.u)) continue;
@@ -836,6 +844,7 @@ function render(){
       if (F){ const r = fightReason(c); dim = !!r; if (F.used.includes(c.u)) stamp = 'USED'; }
       if (G.phase === 'limit') dim = !limitEligible(c);
     }
+    if (evs().includes(c)) stamp = 'PLAYED';
     if (isZ(c) && G.horde.includes(c)){
       if (F && F.pending && F.pending.type === 'shotgun'){ tgt = true; }
       else if (F && F.pending && (F.pending.type === 'pistol2' || F.pending.type === 'rifle')){ tgt = true; pred = predHTML(F.pending.type === 'rifle' ? {dmg:F.pending.amount} : {dmg:pistolDmg()}, c); }
@@ -854,7 +863,7 @@ function render(){
   }
   renderHUD(); renderPiles(); renderBar(); renderCaps(); music.set(trackFor());
   $('#hordeEmpty').hidden = G.horde.length > 0 || G.phase === 'idle';
-  $('#foundLbl').textContent = G.found.length ? '' : 'Found';
+  $('#foundLbl').textContent = trayCards().length ? '' : 'Found';
   document.body.classList.toggle('moon', MOON_DAYS.includes(G.day) && G.phase !== 'idle');
 }
 function renderCaps(){
@@ -870,7 +879,7 @@ function trackFor(){
   if (G.phase === 'night' || G.phase === 'sleep' || (G.phase === 'limit' && G.limit && G.limit.next === 'nextday')) return 'night';
   return 'scavenge';
 }
-function onTable(u){ return !!G && (G.horde.some(c => c.u === u) || G.found.some(c => c.u === u) || handCards().some(c => c.u === u)); }
+function onTable(u){ return !!G && (G.horde.some(c => c.u === u) || trayCards().some(c => c.u === u) || handCards().some(c => c.u === u)); }
 function predict(c){ const k = kd(c); if (k.kind === 'melee') return {dmg:k.dmg, melee:true}; if (k.gun === 'pistol') return {dmg:pistolDmg()}; if (k.gun) return {dmg:k.dmg}; if (k.aoe) return {dmg:k.aoe}; return {dmg:0}; }
 function predHTML(pr, z){
   const k = kd(z), left = k.t - z.dmg; let h = pr.dmg >= left ? '<span class="kill">KILL</span>' : `<span>−${pr.dmg}</span>`;
@@ -1137,12 +1146,18 @@ async function drawCard(){
 async function doEvent(c){
   const e = kd(c).ev;
   await wait(650);
-  if (e === 'horde'){ sfx.horde(); toast('Horde Approaches: 2 Noise zombies join.'); await toDiscard(c); await drawNoise(2); return; }
+  if (e === 'horde'){ sfx.horde(); toast('Horde Approaches: 2 Noise zombies join.'); await keepEvent(c); await drawNoise(2); return; }
   if (e === 'quiet'){ G.quiet = true; G.stopNow = true; toast('Quiet Day. You stop scavenging, and skip Hunger tonight.', 3000); }
   if (e === 'safe'){ heal(2); changeHunger(-1); }
   if (e === 'cache'){ gainAmmo(3); }
   await wait(250);
-  await toDiscard(c);
+  await keepEvent(c);
+}
+async function keepEvent(c){ evs().push(c); unfloat(c); render(); await wait(320); }
+async function clearEvents(){
+  const list = evs().splice(0); if (!list.length) return;
+  render(); list.forEach((c, i) => setTimeout(() => toDiscard(c, lastPos.get(c.u)), i * 120 * SPEED));
+  await wait(380 + list.length * 120);
 }
 async function drawNoise(n){
   for (let i = 0; i < n; i++){
@@ -1154,6 +1169,7 @@ async function drawNoise(n){
 }
 async function endScavenge(){
   SEL = null;
+  await clearEvents();
   if (MOON_DAYS.includes(G.day)){
     G.phase = 'moon'; render(); sfx.moon(); vib(60);
     await banner(G.day === 12 ? 'Last Stand' : 'Blood Moon', '2 Noise zombies join the Horde', 'moonb');
@@ -1448,7 +1464,9 @@ async function gameOver(kind){
 /* =====================================================================
    SCREENS
    ===================================================================== */
-function sheet(html){ closeSheet(); const s = document.createElement('div'); s.className = 'sheet'; s.id = 'sheet'; s.innerHTML = `<div class="panel">${html}</div>`; document.body.appendChild(s); return s; }
+function sheet(html){ closeSheet(); const s = document.createElement('div'); s.className = 'sheet'; s.id = 'sheet'; s.innerHTML = `<div class="panel">${html}</div>`;
+  const t0 = performance.now(); s.addEventListener('click', e => { if (performance.now() - t0 < 450) { e.stopPropagation(); e.preventDefault(); } }, true);
+  document.body.appendChild(s); return s; }
 function closeSheet(){ const s = $('#sheet'); if (s) s.remove(); }
 function cardView(c, small){
   const el = makeEl(c, false); el.style.position = 'absolute';
@@ -1501,8 +1519,30 @@ function inspect(c){
   t.innerHTML = `${grp}${extra}<p style="margin:6px 0 6px">${esc(['survivor', 'ending'].includes(k.kind) ? rulesOf(c).join(' ') : describe(c))}</p>${k.fl ? `<div class="fl">${esc(k.fl)}</div>` : ''}`;
   box.appendChild(t);
   const sm = document.createElement('small'); sm.textContent = 'Tap anywhere to close'; box.appendChild(sm);
-  box.onclick = () => box.remove();
+  const t0 = performance.now();
+  box.onclick = () => { if (performance.now() - t0 > 450) box.remove(); };
   document.body.appendChild(box);
+}
+function showDiscard(){
+  if (!G) return;
+  const list = [...G.discard].reverse(), grp = {};
+  const label = {zombie:'zombie', horde:'zombie', melee:'weapon', gun:'weapon', ammo:'ammo', food:'food', med:'medicine', tool:'tool', event:'event'};
+  const many = {zombie:'zombies', weapon:'weapons', tool:'tools', event:'events'};
+  list.forEach(c => { const g = label[kd(c).kind] || 'other'; grp[g] = (grp[g] || 0) + 1; });
+  const inner = Math.min(440, innerWidth - 32) - 40, sc = Math.min(.85, (inner - 16) / 3 / CW);
+  const s = sheet(`<h3>Discard pile</h3><p style="color:var(--muted);margin-bottom:10px">${list.length ? `${plural(list.length, 'card')}, newest first. Tap one to read it.` : 'Nothing here yet.'} Noise zombies you kill go back under the Noise deck, so they don't show here.</p>
+    <div class="dcounts">${Object.entries(grp).map(([k, n]) => `<span>${n} ${n === 1 ? k : (many[k] || k)}</span>`).join('')}</div>
+    <div class="dgrid" style="--cw:${(CW * sc).toFixed(1)}px;--ch:${(CH * sc).toFixed(1)}px"></div>
+    <div class="row"><button class="btn pri" id="dC">Close</button></div>`);
+  const g = s.querySelector('.dgrid');
+  for (const c of list){
+    const cell = document.createElement('button'); cell.className = 'dcell'; cell.setAttribute('aria-label', kd(c).name);
+    const el = makeEl(Object.assign({}, c), false); el.classList.remove('zl'); el.style.transform = `scale(${sc})`;
+    if (kd(c).uses && usesLeft(c) <= 0) el.querySelector('.ov').innerHTML = '<div class="stamp">BROKEN</div>';
+    cell.appendChild(el); cell.onclick = () => inspect(c); g.appendChild(cell);
+  }
+  s.querySelector('#dC').onclick = closeSheet;
+  s.onclick = e => { if (e.target === s) closeSheet(); };
 }
 function showMenu(){
   if (!G || G.phase === 'idle') return;
@@ -1616,7 +1656,7 @@ function onDown(e){
   if (u != null && findAny(u)){
     PD.lt = setTimeout(() => { if (PD && !PD.drag){ PD.long = true; vib(10); inspect(findAny(u)); } }, 480);
   } else if (u != null){
-    PD.lt = setTimeout(() => { if (PD && !PD.drag){ PD.long = true; const c = zBy(u) || G.found.find(f => f.u === u); if (c) inspect(c); } }, 480);
+    PD.lt = setTimeout(() => { if (PD && !PD.drag){ PD.long = true; const c = zBy(u) || trayCards().find(f => f.u === u); if (c) inspect(c); } }, 480);
   }
 }
 function onMove(e){
@@ -1669,6 +1709,7 @@ function onUp(e){
 function onTap(u, x, y, target){
   if (ANIM) return;
   if (target.closest('#pDeck')){ if (G.phase === 'scavenge') act(drawCard); return; }
+  if (target.closest('#pDisc')) return;
   if (target.closest('#survChip')){ if (G.surv) inspect({u:-1, id:G.surv, art:G.surv}); return; }
   if (target.closest('#bar')) return;
   const F = G.fight;
@@ -1687,7 +1728,7 @@ function onTap(u, x, y, target){
     if (F && sc && kd(sc).aoe){ act(() => playCard(sc.u, null)); return; }
     inspect(z); return;
   }
-  const f = u != null ? G.found.find(c => c.u === u) : null;
+  const f = u != null ? trayCards().find(c => c.u === u) : null;
   if (f){ inspect(f); return; }
   if (SEL){ SEL = null; render(); }
 }
@@ -1702,9 +1743,9 @@ const TOUR = [
   {el:'#survChip', title:'Your survivor', text:'Your special ability. Tap here any time to read it.'},
   {zone:'horde', title:'The Horde', text:'Zombies you draw gather here. Tough is the damage it takes to kill one. Bite is the Health you lose if it is still standing when the fight ends. A red MELEE −1 ♥ tag means melee hits on it always cost you 1 Health.'},
   {el:'#pDeck', pile:1, title:'Survival deck', text:'Tap it to scavenge. Draw at least 2 cards a day, then stop when you like. Any card might be loot, or a zombie.'},
-  {zone:'found', title:'Found', text:'Loot you find waits here until after the fight. If you flee, you drop it.'},
+  {zone:'found', title:'Found', text:'Loot you find waits here until after the fight. If you flee, you drop it. Events you draw happen at once and stay here, marked Played, until you stop scavenging.'},
   {el:'#pNoise', pile:1, title:'Noise deck', text:'The dead follow noise. Every gun you fire, Molotov or Pipe Bomb brings a zombie from here after the fight. Blood Moons draw from it too.'},
-  {el:'#pDisc', pile:1, title:'Discard', text:'Used items, broken weapons and dead zombies end up here.'},
+  {el:'#pDisc', pile:1, title:'Discard', text:'Used items, played events, broken weapons and dead zombies end up here. Tap it any time to see everything in it.'},
   {el:'#bar', title:'What to do now', text:'This bar tells you what happens next and holds the buttons. When zombies come you choose Fight or Flee. Fleeing is costly: you drop today\'s loot, gain 2 Hunger and lose 1 Health.'},
   {zone:'hand', title:'What you can carry', text:'Weapons have a blue edge, Pack items a tan edge. You carry 3 weapons plus the Kitchen Knife, and 5 Pack items: food, medicine and tools like the Molotov. Find more and you must drop one. The labels show your counts.'},
   {card:'S02', title:'Reading a weapon', text:'Left badge: how many zombies it can hit. Right badge: its damage. Found weapons wear out, and the pips by the name show uses left. Your Knife and Pistol never break. Long-press any card to read it.'},
@@ -1777,6 +1818,7 @@ function start(data){
   addEventListener('contextmenu', e => e.preventDefault());
   addEventListener('resize', () => { readSafe(); geo(); if (G) render(); if (TUT) showStep(true); });
   $('#menuBtn').addEventListener('click', e => { e.stopPropagation(); showMenu(); });
+  $('#pDisc').addEventListener('click', e => { e.stopPropagation(); if (G && !ANIM){ sfx.tap(); showDiscard(); } });
   window.claude?.hot?.snapshot?.(() => (G && !ANIM && G.phase !== 'over' && G.phase !== 'idle') ? {save:G} : {});
   if (data && data.save && data.save.phase){ resume(data.save); return; }
   showTitle();
