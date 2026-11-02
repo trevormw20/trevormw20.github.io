@@ -31,6 +31,7 @@
   --paper:#f2efe8; --ink:#1d1d1d; --ink-soft:#5f5a50;
   --hud:#ece6d8; --muted:#a39c8d; --chip:#2a2823; --chip-hi:#38352e;
   --blood:#d2402f; --moon:#8c2f6a; --amber:#e8a73c; --toxic:#a3cf45; --heal:#7fcf8a;
+  --ringW:#86b7e6; --ringP:#d9b26a;
   --f-display:'Zilla Slab', 'Rockwell', Georgia, serif;
   --f-body:'Barlow', 'Segoe UI', system-ui, sans-serif;
   --f-label:'Barlow Condensed', 'Arial Narrow', sans-serif;
@@ -104,7 +105,7 @@ body.night #table::before{content:"";position:absolute;inset:0;background:rgba(8
   background:rgba(20,19,17,.88);border:1px solid var(--line);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);box-shadow:0 8px 24px rgba(0,0,0,.4)}
 #bar .bt{flex:1;min-width:0}
 #bar h2{margin:0;font:700 15px/1.1 var(--f-display);letter-spacing:.01em;display:flex;align-items:center;gap:8px;white-space:nowrap;overflow:hidden}
-#bar p{margin:3px 0 0;font:500 12.5px/1.3 var(--f-body);color:#cfc8b8;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+#bar p{margin:3px 0 0;font:500 12px/1.27 var(--f-body);color:#cfc8b8;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 #bar .btns{display:flex;gap:7px;flex:none}
 .btn{height:42px;padding:0 14px;border-radius:10px;border:1px solid var(--line);background:var(--chip-hi);font:700 13px/1 var(--f-label);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;transition:transform .12s, opacity .2s}
 .btn:active{transform:scale(.95)}
@@ -139,7 +140,27 @@ body.night #table::before{content:"";position:absolute;inset:0;background:rgba(8
 .bdg span{display:block;font:800 16px/1 var(--f-body);margin-top:1px;letter-spacing:-.02em}
 .bdg span.st{font-size:10px;letter-spacing:-.06em;margin-top:4px}
 .bdg.hurt span{color:var(--blood)}
-.txt{position:absolute;left:9px;right:9px;top:111px;bottom:13px;font:500 6.2px/1.22 var(--f-body);color:var(--ink);overflow:hidden}
+.lower{position:absolute;left:8px;right:8px;top:110px;bottom:13px;display:flex;flex-direction:column;gap:3px;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:2px}
+.tags span{font:700 5.6px/1 var(--f-label);letter-spacing:.05em;text-transform:uppercase;padding:2px 3px 1.6px;border-radius:2px;background:#e2dccd;color:#3a372f;white-space:nowrap}
+.tags span.red{background:#f6d6cf;color:#a3271b}
+.tags span.ok{background:#d8e6d1;color:#2f5a22}
+.txt{position:relative;padding:0 1px;font:500 6.2px/1.22 var(--f-body);color:var(--ink);overflow:hidden;flex:1;min-height:0}
+.hdr.hasU{padding-right:30px}
+.uses{position:absolute;right:6px;top:8px;display:flex;gap:2px}
+.uses i{width:5px;height:10px;border-radius:1.5px;background:#fff}
+.uses i.off{background:rgba(255,255,255,.22)}
+.uses.low i:not(.off){background:#ff9a8a}
+.cqm{position:absolute;left:50%;top:84px;transform:translateX(-50%);z-index:4;background:#fff;color:var(--blood);border:1.5px solid var(--blood);border-radius:4px;padding:2px 3px;text-align:center;font:800 6.4px/1.05 var(--f-label);letter-spacing:.04em;white-space:nowrap}
+.card.gW .front{outline:2.5px solid var(--ringW);outline-offset:1px}
+.card.gP .front{outline:2.5px solid var(--ringP);outline-offset:1px}
+.cap{position:absolute;z-index:955;height:18px;padding:0 9px;border-radius:9px;box-sizing:border-box;font:700 10px/15px var(--f-label);letter-spacing:.12em;text-transform:uppercase;background:#141311;border:1.5px solid;white-space:nowrap;pointer-events:none}
+#capW{border-color:var(--ringW);color:#c3dbf2}
+#capP{border-color:var(--ringP);color:#efd7a8}
+.cap.over{background:#5a1e17;color:#fff;border-color:var(--blood)}
+.card.breaking .flip{animation:brk .7s ease-in forwards}
+.card.breaking .front::after{content:"";position:absolute;inset:0;z-index:9;background:linear-gradient(112deg,transparent 47%,rgba(25,22,18,.9) 47.5%,rgba(25,22,18,.9) 49%,transparent 49.5%),linear-gradient(64deg,transparent 55%,rgba(25,22,18,.75) 55.5%,rgba(25,22,18,.75) 56.6%,transparent 57%)}
+@keyframes brk{0%{transform:none}12%{transform:translateX(-5px) rotate(-3deg)}24%{transform:translateX(5px) rotate(3deg)}36%{transform:translateX(-3px)}55%{transform:translateY(-10px) rotate(-2deg);opacity:1}100%{transform:translateY(60px) rotate(16deg) scale(.85);opacity:0}}
 .card .txt p{margin:0 0 2px;font:inherit;color:inherit}
 .card .txt p.fl{font:italic 400 6px/1.22 Georgia,serif;color:#6d685e}
 .ftr{position:absolute;left:9px;right:9px;bottom:6px;font:700 4.8px/1 var(--f-label);color:#8a8a8a;display:flex;justify-content:space-between;letter-spacing:.08em}
@@ -226,6 +247,9 @@ body.night #table::before{content:"";position:absolute;inset:0;background:rgba(8
 #title .btn{height:52px;font-size:15px}
 #title .rec{display:flex;gap:16px;flex-wrap:wrap;font:600 12.5px/1.3 var(--f-body);color:var(--muted)}
 #title .rec b{color:var(--hud);font-weight:800}
+.snd{display:flex;gap:8px;justify-content:center}
+.snd button{flex:1;height:38px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--muted);font:700 11px/1 var(--f-label);letter-spacing:.14em;text-transform:uppercase}
+.snd button[aria-pressed="true"]{color:var(--hud);border-color:rgba(236,230,216,.3)}
 #pick .in{max-width:480px;margin:0 auto;box-sizing:border-box;padding-block:max(18px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 #pick h2{margin:6px 0 4px;font:700 28px/1.05 var(--f-display)}
 #pick .lead{margin:0 0 14px;color:#cfc8b8;font:500 14px/1.4 var(--f-body)}
@@ -297,6 +321,8 @@ body.night #table::before{content:"";position:absolute;inset:0;background:rgba(8
   <div class="pile" id="pNoise"><span class="ct"></span><span class="nm">Noise</span></div>
   <div class="pile" id="pDisc"><span class="top"></span><span class="ct"></span><span class="nm">Discard</span></div>
   <div id="bar"><div class="bt"><h2></h2><p></p></div><div class="btns"></div></div>
+  <div class="cap" id="capW" hidden></div>
+  <div class="cap" id="capP" hidden></div>
 </div>
 <canvas id="fx"></canvas>
 <div id="vig"></div>
@@ -325,12 +351,12 @@ def('B03',{name:'Crawler',kind:'zombie',t:1,b:1,inf:1,n:3,fl:'It hides in the ta
 def('B04',{name:'Runner',kind:'zombie',t:2,b:2,inf:1,fast:1,n:7,fl:'It saw you first.'});
 def('B05',{name:'Bloater',kind:'zombie',t:3,b:2,inf:1,n:5,fl:'Swollen, sloshing, toxic.'});
 def('B06',{name:'Brute',kind:'zombie',t:5,b:3,n:3,fl:'A wall of rotten muscle.'});
-def('B10',{name:'Baseball Bat',kind:'melee',dmg:2,n:2,tx:'Action: 2 damage to one zombie.'});
-def('B11',{name:'Machete',kind:'melee',dmg:3,n:2,tx:'Action: 3 damage to one zombie.'});
-def('B12',{name:'Fire Axe',kind:'melee',dmg:4,n:1,tx:'Action: 4 damage to one zombie.'});
-def('B13',{name:'Crossbow',kind:'gun',gun:'crossbow',dmg:2,n:1,tx:'Action: 2 damage to one zombie. Uses no Ammo and makes no Noise. Not melee, so no Close Quarters.'});
-def('B14',{name:'Shotgun',kind:'gun',gun:'shotgun',dmg:2,n:2,tx:'Action: 1 Ammo, 2 damage to each of up to 3 zombies.'});
-def('B15',{name:'Hunting Rifle',kind:'gun',gun:'rifle',dmg:5,n:1,tx:'Action: 1 Ammo, 5 damage to one zombie. Damage left after it dies hits one more zombie.'});
+def('B10',{name:'Baseball Bat',kind:'melee',dmg:2,n:2,uses:4,blunt:1,tx:'Action: 2 damage to one zombie.'});
+def('B11',{name:'Machete',kind:'melee',dmg:3,n:2,uses:4,tx:'Action: 3 damage to one zombie.'});
+def('B12',{name:'Fire Axe',kind:'melee',dmg:4,n:1,uses:3,tx:'Action: 4 damage to one zombie.'});
+def('B13',{name:'Crossbow',kind:'gun',gun:'crossbow',dmg:2,n:1,uses:4,tx:'Action: 2 damage to one zombie. Uses no Ammo and makes no Noise. Not melee, so no Close Quarters.'});
+def('B14',{name:'Shotgun',kind:'gun',gun:'shotgun',dmg:2,n:2,uses:3,tx:'Action: 1 Ammo, 2 damage to each of up to 3 zombies.'});
+def('B15',{name:'Hunting Rifle',kind:'gun',gun:'rifle',dmg:5,n:1,uses:3,tx:'Action: 1 Ammo, 5 damage to one zombie. Damage left after it dies hits one more zombie.'});
 def('B20',{name:'Loose Rounds',kind:'ammo',v:2,n:3,tx:'Gain 2 Ammo, then discard.'});
 def('B21',{name:'Ammo Box',kind:'ammo',v:3,n:1,tx:'Gain 3 Ammo, then discard.'});
 def('B30',{name:'Snack Bar',kind:'food',v:1,n:3,tx:'Eat: Hunger −1.'});
@@ -351,9 +377,9 @@ def('N02',{name:'Walker',kind:'horde',t:2,b:1,n:5,fl:'It followed the noise.'});
 def('N03',{name:'Runner',kind:'horde',t:2,b:2,inf:1,fast:1,n:2,fl:'It followed the noise.'});
 def('S01',{name:'Kitchen Knife',kind:'melee',dmg:1,starter:1,tx:'Starting weapon. Action: 1 damage to one zombie. Never counts against your 3 weapons.'});
 def('S02',{name:'Pistol',kind:'gun',gun:'pistol',dmg:2,starter:1,tx:'Starting weapon. Action: fire 1 or 2 shots. Each shot: 1 Ammo, 2 damage to one zombie.'});
-def('P01',{name:'Officer',kind:'survivor',tx:'Start with 3 Ammo instead of 2.'});
+def('P01',{name:'Officer',kind:'survivor',tx:'Start with 3 Ammo instead of 2. Your guns last 1 extra use.'});
 def('P02',{name:'Nurse',kind:'survivor',tx:'Your Bandages and First Aid Kits heal 1 extra.'});
-def('P03',{name:'Brawler',kind:'survivor',tx:'Close Quarters only hurts you against Bite 3 zombies.'});
+def('P03',{name:'Brawler',kind:'survivor',tx:'Close Quarters only hurts you against Bite 3 zombies. Your melee weapons last 1 extra use.'});
 def('P04',{name:'Chef',kind:'survivor',tx:'Each food you eat removes 1 extra Hunger.'});
 def('P05',{name:'Hunter',kind:'survivor',tx:'Your Pistol shots deal 3 damage instead of 2.'});
 def('P06',{name:'Scout',kind:'survivor',tx:'Start of each day: look at the top card. You may gain 1 Hunger to put it on the bottom.'});
@@ -391,18 +417,40 @@ class Over extends Error {}
 /* =====================================================================
    SOUND (synthesised, no files) + haptics
    ===================================================================== */
+const AUD = n => 'audio/' + n + '.mp3';
 const sfx = (() => {
-  let ctx = null, master = null, on = load('holdout.sound', true), nbuf = null;
+  let ctx = null, master = null, on = load('holdout.sfx', load('holdout.sound', true)), nbuf = null, loading = false;
+  const buf = {};
+  const FILES = {groan:['sfx-groan', 'sfx-snarl'], horde:['sfx-horde'], bite:['sfx-bite'], kill:['sfx-zombie-death'], shot:['sfx-pistol'], shotgun:['sfx-shotgun'],
+    rifle:['sfx-rifle'], bolt:['sfx-crossbow'], blunt:['sfx-blunt'], blade:['sfx-blade'], brk:['sfx-break'], fire:['sfx-molotov'], boom:['sfx-explosion'],
+    draw:['sfx-card'], heal:['sfx-heal'], eat:['sfx-eat'], ammo:['sfx-ammo'], moon:['sfx-blood-moon'], heli:['sfx-helicopter'], flee:['sfx-flee'],
+    fight:['sfx-fight'], plank:['sfx-barricade'], infect:['sfx-infected'], day:['sfx-dawn']};
+  const VOL = {groan:.5, horde:.55, bite:.75, kill:.55, shot:.7, shotgun:.75, rifle:.75, bolt:.7, blunt:.8, blade:.75, brk:.8, fire:.7, boom:.85,
+    draw:.4, heal:.6, eat:.6, ammo:.6, moon:.7, heli:.6, flee:.55, fight:.6, plank:.7, infect:.7, day:.35};
   function init(){
-    if (ctx) { if (ctx.state === 'suspended') ctx.resume().catch(()=>{}); return; }
+    if (ctx){ if (ctx.state === 'suspended') ctx.resume().catch(() => {}); return; }
     try {
       ctx = new (window.AudioContext || window.webkitAudioContext)();
-      master = ctx.createGain(); master.gain.value = .55; master.connect(ctx.destination);
+      master = ctx.createGain(); master.gain.value = .9; master.connect(ctx.destination);
       nbuf = ctx.createBuffer(1, ctx.sampleRate * 1.5, ctx.sampleRate);
       const d = nbuf.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
-    } catch(e){ ctx = null; }
+    } catch(e){ ctx = null; return; }
+    loadAll();
+  }
+  function decode(ab){ return new Promise((res, rej) => { try { const p = ctx.decodeAudioData(ab, res, rej); if (p && p.then) p.then(res, rej); } catch(e){ rej(e); } }); }
+  function loadAll(){
+    if (loading || !ctx) return; loading = true;
+    for (const [k, list] of Object.entries(FILES)) for (const n of list)
+      fetch(AUD(n)).then(r => r.ok ? r.arrayBuffer() : Promise.reject()).then(decode).then(b => { (buf[k] = buf[k] || []).push(b); }).catch(() => {});
   }
   function ok(){ return on && ctx && SPEED > 0; }
+  function play(k, vol = 1, rate = 1){
+    if (!ok()) return true;
+    const list = buf[k]; if (!list || !list.length) return false;
+    const src = ctx.createBufferSource(), g = ctx.createGain();
+    src.buffer = list[Math.floor(Math.random() * list.length)]; src.playbackRate.value = rate; g.gain.value = (VOL[k] || .7) * vol;
+    src.connect(g); g.connect(master); src.start(); return true;
+  }
   function tone(f, dur, type = 'sine', vol = .2, f2 = null, delay = 0, lp = 0){
     if (!ok()) return;
     const t = ctx.currentTime + delay, o = ctx.createOscillator(), g = ctx.createGain();
@@ -413,37 +461,79 @@ const sfx = (() => {
   }
   function nz(dur, vol = .3, type = 'lowpass', f = 2000, f2 = null, delay = 0, q = 1){
     if (!ok()) return;
-    const t = ctx.currentTime + delay, s = ctx.createBufferSource(), fl = ctx.createBiquadFilter(), g = ctx.createGain();
-    s.buffer = nbuf; fl.type = type; fl.Q.value = q; fl.frequency.setValueAtTime(f, t); if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t + dur);
+    const t = ctx.currentTime + delay, src = ctx.createBufferSource(), fl = ctx.createBiquadFilter(), g = ctx.createGain();
+    src.buffer = nbuf; fl.type = type; fl.Q.value = q; fl.frequency.setValueAtTime(f, t); if (f2) fl.frequency.exponentialRampToValueAtTime(f2, t + dur);
     g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + .008); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    s.connect(fl); fl.connect(g); g.connect(master); s.start(t, Math.random() * .5); s.stop(t + dur + .05);
+    src.connect(fl); fl.connect(g); g.connect(master); src.start(t, Math.random() * .5); src.stop(t + dur + .05);
   }
-  return {
-    init, get on(){ return on; }, set on(v){ on = v; store('holdout.sound', v); },
-    draw(){ nz(.13, .22, 'bandpass', 2600, 1100, 0, .8); },
-    flip(){ nz(.06, .16, 'highpass', 3200); },
-    groan(){ const f = rnd(78, 104); tone(f, .7, 'sawtooth', .07, f * .72, 0, 420); tone(f * 1.5, .55, 'sawtooth', .03, f, .05, 380); },
-    shot(){ nz(.28, .75, 'lowpass', 3800, 260); tone(80, .2, 'sine', .55, 38); },
-    shotgun(){ nz(.45, .9, 'lowpass', 2600, 160); tone(58, .32, 'sine', .7, 28); nz(.2, .3, 'highpass', 5000, null, .02); },
-    bolt(){ nz(.09, .35, 'highpass', 2500); tone(420, .12, 'triangle', .15, 180); },
-    melee(){ tone(150, .16, 'triangle', .5, 55); nz(.09, .35, 'bandpass', 900, null, 0, 1.5); },
-    kill(){ tone(120, .4, 'sawtooth', .1, 40, 0, 500); nz(.25, .25, 'lowpass', 600, 120, .05); },
-    bite(){ nz(.2, .65, 'bandpass', 700, 260, 0, 2.2); tone(92, .22, 'square', .1, 55, 0, 700); },
-    heal(){ tone(660, .2, 'sine', .16); tone(990, .3, 'sine', .14, null, .09); tone(1320, .35, 'sine', .08, null, .18); },
-    eat(){ nz(.05, .28, 'bandpass', 1600, null, 0, 2); nz(.05, .24, 'bandpass', 1300, null, .09, 2); nz(.05, .2, 'bandpass', 1500, null, .18, 2); },
-    ammo(){ tone(1350, .05, 'square', .06); tone(1650, .06, 'square', .06, null, .07); },
-    fire(){ nz(.75, .55, 'bandpass', 1100, 380, 0, .7); nz(.4, .3, 'highpass', 4000, null, .1); },
-    boom(){ nz(1.1, .95, 'lowpass', 1400, 50); tone(48, .7, 'sine', .8, 24); },
-    moon(){ tone(55, 1.8, 'sawtooth', .12, 52, 0, 300); tone(880, 1.4, 'sine', .06, null, .1); tone(1318, 1.2, 'sine', .04, null, .25); },
-    day(){ tone(523, .5, 'sine', .08); tone(784, .7, 'sine', .07, null, .12); },
-    fight(){ nz(.3, .4, 'lowpass', 900, 120); tone(70, .45, 'square', .1, 40, 0, 300); },
-    plank(){ tone(180, .12, 'triangle', .35, 90); tone(160, .12, 'triangle', .3, 80, .12); },
+  const S = {
+    init, get on(){ return on; }, set on(v){ on = v; store('holdout.sfx', v); }, get loaded(){ return Object.keys(buf).length; },
+    draw(){ play('draw', 1, rnd(.94, 1.08)) || nz(.13, .22, 'bandpass', 2600, 1100, 0, .8); },
+    flip(){ if (!buf.draw) nz(.06, .16, 'highpass', 3200); },
+    groan(){ if (play('groan', 1, rnd(.88, 1.1))) return; const f = rnd(78, 104); tone(f, .7, 'sawtooth', .07, f * .72, 0, 420); tone(f * 1.5, .55, 'sawtooth', .03, f, .05, 380); },
+    horde(){ play('horde') || S.groan(); },
+    shot(){ play('shot', 1, rnd(.95, 1.05)) || (nz(.28, .75, 'lowpass', 3800, 260), tone(80, .2, 'sine', .55, 38)); },
+    rifle(){ play('rifle') || S.shot(); },
+    shotgun(){ play('shotgun') || (nz(.45, .9, 'lowpass', 2600, 160), tone(58, .32, 'sine', .7, 28)); },
+    bolt(){ play('bolt') || (nz(.09, .35, 'highpass', 2500), tone(420, .12, 'triangle', .15, 180)); },
+    melee(kind){ play(kind === 'blunt' ? 'blunt' : 'blade', 1, rnd(.93, 1.07)) || (tone(150, .16, 'triangle', .5, 55), nz(.09, .35, 'bandpass', 900, null, 0, 1.5)); },
+    kill(){ play('kill', 1, rnd(.9, 1.1)) || (tone(120, .4, 'sawtooth', .1, 40, 0, 500), nz(.25, .25, 'lowpass', 600, 120, .05)); },
+    bite(){ play('bite', 1, rnd(.92, 1.08)) || (nz(.2, .65, 'bandpass', 700, 260, 0, 2.2), tone(92, .22, 'square', .1, 55, 0, 700)); },
+    heal(){ play('heal') || (tone(660, .2, 'sine', .16), tone(990, .3, 'sine', .14, null, .09)); },
+    eat(){ play('eat') || (nz(.05, .28, 'bandpass', 1600, null, 0, 2), nz(.05, .24, 'bandpass', 1300, null, .09, 2)); },
+    ammo(){ play('ammo') || (tone(1350, .05, 'square', .06), tone(1650, .06, 'square', .06, null, .07)); },
+    fire(){ play('fire') || nz(.75, .55, 'bandpass', 1100, 380, 0, .7); },
+    boom(){ play('boom') || (nz(1.1, .95, 'lowpass', 1400, 50), tone(48, .7, 'sine', .8, 24)); },
+    moon(){ play('moon') || (tone(55, 1.8, 'sawtooth', .12, 52, 0, 300), tone(880, 1.4, 'sine', .06, null, .1)); },
+    day(){ play('day') || (tone(523, .5, 'sine', .08), tone(784, .7, 'sine', .07, null, .12)); },
+    fight(){ play('fight') || (nz(.3, .4, 'lowpass', 900, 120), tone(70, .45, 'square', .1, 40, 0, 300)); },
+    plank(){ play('plank') || (tone(180, .12, 'triangle', .35, 90), tone(160, .12, 'triangle', .3, 80, .12)); },
+    brk(){ play('brk') || (nz(.18, .6, 'bandpass', 1800, 600, 0, 1.2), tone(140, .2, 'triangle', .3, 60)); },
+    flee(){ play('flee') || nz(.4, .2, 'bandpass', 700, 300); },
+    heli(){ play('heli'); },
+    infect(){ play('infect') || tone(70, .6, 'sine', .3, 50); },
     deny(){ tone(190, .14, 'square', .05, 150); },
     tap(){ tone(900, .03, 'square', .03); },
     win(){ [440, 554, 659, 880].forEach((f, i) => tone(f, .7, 'triangle', .1, null, i * .12)); },
     lose(){ tone(220, 1.4, 'sawtooth', .1, 98, 0, 600); tone(165, 1.6, 'sawtooth', .07, 82, .1, 500); },
   };
+  return S;
 })();
+
+/* Music: one track at a time, crossfaded. Starts after the first tap (browsers require it). */
+const music = (() => {
+  let on = load('holdout.music', true), unlocked = false, want = null, cur = null;
+  const T = {title:{loop:true, v:.5}, scavenge:{loop:true, v:.38}, fight:{loop:true, v:.45}, night:{loop:true, v:.42}, victory:{loop:false, v:.75}, defeat:{loop:false, v:.7}};
+  const el = {};
+  function get(n){
+    if (!el[n]){
+      const a = new Audio(); a.preload = 'auto'; a.loop = T[n].loop; a.volume = 0; a.src = AUD('music-' + n);
+      a.addEventListener('error', () => { if (a._retry) return; a._retry = 1; fetch(AUD('music-' + n)).then(r => r.blob()).then(b => { a.src = URL.createObjectURL(b); if (cur === n) a.play().catch(() => {}); }).catch(() => {}); });
+      el[n] = a;
+    }
+    return el[n];
+  }
+  function fade(a, to, ms, done){
+    clearInterval(a._f); const from = a.volume, t0 = performance.now();
+    a._f = setInterval(() => { const k = Math.min(1, (performance.now() - t0) / ms); try { a.volume = clamp(from + (to - from) * k, 0, 1); } catch(e){} if (k >= 1){ clearInterval(a._f); if (done) done(); } }, 40);
+  }
+  function apply(){
+    const active = unlocked && on && !document.hidden && SPEED > 0 && want;
+    for (const [n, a] of Object.entries(el)) if (!active || n !== want) { if (!a.paused) fade(a, 0, 800, () => a.pause()); }
+    if (!active){ cur = null; return; }
+    const a = get(want);
+    if (cur !== want){ if (!T[want].loop) { try { a.currentTime = 0; } catch(e){} } cur = want; }
+    if (a.paused) a.play().catch(() => {});
+    fade(a, T[want].v, 900);
+  }
+  return {
+    unlock(){ if (unlocked) return; unlocked = true; apply(); },
+    set(n){ if (n === null || n === undefined) return; if (n === want && (cur === want || !unlocked)) return; want = n; apply(); },
+    refresh: apply, state(){ const a = el[want]; return {want, cur, unlocked, playing: !!a && !a.paused, ready: a ? a.readyState : -1, err: a && a.error ? a.error.code : 0}; },
+    get on(){ return on; }, set on(v){ on = v; store('holdout.music', v); cur = null; apply(); },
+  };
+})();
+document.addEventListener('visibilitychange', () => music.refresh());
 function vib(ms){ try { if (SPEED > 0) navigator.vibrate && navigator.vibrate(ms); } catch(e){} }
 
 /* =====================================================================
@@ -495,14 +585,16 @@ function fresh(){
 }
 function inst(id){
   const arr = D[id].art, n = G.artc[id] || 0; G.artc[id] = n + 1;
-  return {u:G.uid++, id, art:arr[n % arr.length], dmg:0, barr:false};
+  return {u:G.uid++, id, art:arr[n % arr.length], dmg:0, barr:false, wear:0};
 }
 const handCards = () => G ? [...G.weapons, ...G.pack] : [];
 const findAny = u => handCards().find(c => c.u === u);
 const zBy = u => G.horde.find(z => z.u === u);
 const nonKnife = () => G.weapons.filter(w => w.id !== 'S01').length;
 const pistolDmg = () => G.surv === 'P05' ? 3 : 2;
-const cqLimit = () => G.surv === 'P03' ? 3 : 2;
+const cqLimit = () => G && G.surv === 'P03' ? 3 : 2;
+function maxUses(c){ const k = kd(c); if (!k.uses) return Infinity; return k.uses + (G && G.surv === 'P01' && k.kind === 'gun' ? 1 : 0) + (G && G.surv === 'P03' && k.kind === 'melee' ? 1 : 0); }
+const usesLeft = c => maxUses(c) - (c.wear || 0);
 
 function save(){
   if (!G || G.phase === 'over' || G.phase === 'idle') { store('holdout.save', null); return; }
@@ -529,7 +621,7 @@ function geo(){
   const handVis = Math.round(CH * HS * .80);
   Z.handY = H - SAFE.b - handVis + CH * HS / 2;          // centre y of hand cards
   Z.handTop = H - SAFE.b - handVis - 8;
-  Z.bar = {x:OX + 10, w:W - 20, h:66, y:Z.handTop - 66 - 4};
+  Z.bar = {x:OX + 10, w:W - 20, h:78, y:Z.handTop - 78 - 25};
   const trayH = CH * TS + 26;
   Z.tray = {x:OX + pad, w:W - pad * 2, y:Z.bar.y - trayH - 2, h:trayH};
   Z.horde = {x:OX + 8, w:W - 16, y:Z.hud.y + Z.hud.h + 20, h:0};
@@ -548,6 +640,8 @@ function geo(){
   S($('#hordeLbl'), {x:Z.horde.x, y:Z.horde.y - 14, w:Z.horde.w, h:12});
   S($('#hordeEmpty'), {x:Z.horde.x, y:Z.horde.y + Z.horde.h / 2 - 10, w:Z.horde.w, h:20});
   S($('#foundLbl'), {x:Z.found.x, y:Z.found.y + Z.found.h + 4, w:Z.found.w, h:12});
+  Object.assign($('#capW').style, {left:(OX + 12) + 'px', top:(Z.handTop - 21) + 'px', right:'auto'});
+  Object.assign($('#capP').style, {left:'auto', right:(innerWidth - OX - W + 12) + 'px', top:(Z.handTop - 21) + 'px'});
 }
 const $ = (s, r = document) => r.querySelector(s);
 
@@ -574,13 +668,48 @@ function rulesOf(c){
 function badgesOf(c){
   const k = kd(c);
   if (k.kind === 'zombie' || k.kind === 'horde') return [['TOUGH', Math.max(0, k.t - (c.dmg || 0)), c.dmg > 0], ['BITE', k.b]];
-  if (k.kind === 'melee') return [['DAMAGE', k.dmg]];
-  if (k.kind === 'gun') return {pistol:[['DAMAGE', G && G.surv === 'P05' ? 3 : 2], ['SHOTS', 2]], shotgun:[['DAMAGE', 2], ['TARGETS', 3]], rifle:[['DAMAGE', 5], ['SHOTS', 1]], crossbow:[['DAMAGE', 2], ['AMMO', 0]]}[k.gun];
+  if (k.kind === 'melee') return [['TARGETS', 1], ['DAMAGE', k.dmg]];
+  if (k.kind === 'gun') return {pistol:[['TARGETS', '1–2'], ['DAMAGE', G && G.surv === 'P05' ? 3 : 2]], shotgun:[['TARGETS', 3], ['DAMAGE', 2]], rifle:[['TARGETS', '1+'], ['DAMAGE', 5]], crossbow:[['TARGETS', 1], ['DAMAGE', 2]]}[k.gun];
+  if (k.aoe) return [['TARGETS', 'ALL'], ['DAMAGE', k.aoe]];
   if (k.kind === 'ammo') return [['AMMO', '+' + k.v]];
   if (k.kind === 'food') return [['HUNGER', '−' + k.v]];
   if (k.kind === 'med'){ const o = []; if (k.v) o.push(['HEAL', '+' + k.v]); if (k.cure) o.push(['CURE', '☣']); return o; }
   if (k.kind === 'ending' && k.stars) return [['STARS', '★'.repeat(k.stars)]];
   return [];
+}
+function tagsOf(c){
+  const k = kd(c), t = [];
+  const uses = () => k.starter ? t.push(['Never breaks', 'ok']) : t.push([`${usesLeft(c)}/${maxUses(c)} uses left`, usesLeft(c) <= 1 ? 'red' : '']);
+  if (k.kind === 'melee'){ t.push(['Melee']); t.push(['Close Quarters', 'red']); uses(); }
+  else if (k.gun === 'pistol'){ t.push(['1 Ammo per shot']); t.push(['Noise']); uses(); }
+  else if (k.gun === 'crossbow'){ t.push(['No Ammo']); t.push(['Silent', 'ok']); uses(); }
+  else if (k.gun === 'shotgun'){ t.push(['1 Ammo']); t.push(['Noise']); uses(); }
+  else if (k.gun === 'rifle'){ t.push(['1 Ammo']); t.push(['Leftover hits next']); t.push(['Noise']); uses(); }
+  else if (k.aoe){ t.push(['Pack']); t.push(['Uses an action']); t.push([`Noise ${k.noise}`]); t.push(['One use', 'red']); }
+  else if (k.barr){ t.push(['Pack']); t.push(['Free action', 'ok']); t.push(['One use', 'red']); }
+  else if (k.kind === 'food' || k.kind === 'med'){ t.push(['Pack']); t.push(['Outside fights']); }
+  return t;
+}
+function describe(c){
+  const k = kd(c);
+  const u = () => k.starter ? 'Never breaks.' : `${usesLeft(c)} of ${maxUses(c)} uses left, then it breaks.`;
+  if (isZ(c)){
+    const l = [`Tough ${k.t}: damage it takes to kill. Bite ${k.b}: Health you lose if it's still standing when the fight ends.`];
+    if (k.fast) l.push("Fast: you can't flee from it.");
+    if (k.inf) l.push('☣ Its bite makes you Infected.');
+    if (k.b >= cqLimit()) l.push('Hitting it with a melee weapon costs you 1 Health (Close Quarters).');
+    return l.join(' ');
+  }
+  if (k.kind === 'melee') return `Melee: ${k.dmg} damage to 1 zombie. Close Quarters: hitting a Bite ${cqLimit()}+ zombie always costs you 1 Health. ${u()}`;
+  if (k.gun === 'pistol') return `One action fires 1 or 2 shots. Each shot costs 1 Ammo and deals ${pistolDmg()} damage to 1 zombie, so 2 shots can hit 2 zombies. Makes Noise. ${u()}`;
+  if (k.gun === 'crossbow') return `2 damage to 1 zombie. No Ammo, no Noise, and no Close Quarters. ${u()}`;
+  if (k.gun === 'shotgun') return `1 Ammo: 2 damage to each of up to 3 zombies. Makes Noise. ${u()}`;
+  if (k.gun === 'rifle') return `1 Ammo: 5 damage to 1 zombie. Damage left over after it dies hits 1 more zombie. Makes Noise. ${u()}`;
+  if (k.aoe) return `Pack item. Takes an action: ${k.aoe} damage to every zombie. Makes Noise ${k.noise}. One use.`;
+  if (k.barr) return `Pack item. Free, no action needed: 1 zombie can't bite you this fight. One use.`;
+  if (k.kind === 'food') return `Pack item. Eat outside fights: Hunger −${k.v + (G && G.surv === 'P04' ? 1 : 0)}.`;
+  if (k.kind === 'med') return `Pack item. Use outside fights: ${k.cure ? 'cure Infection and ' : ''}heal ${k.v + (G && G.surv === 'P02' && (k.id === 'B40' || k.id === 'B41') ? 1 : 0)}.`;
+  return rulesOf(c).join(' ');
 }
 function subOf(c){
   const k = kd(c); let s = KIND[k.kind][0];
@@ -597,9 +726,13 @@ function faceHTML(c){
   if (b.length === 1) badges = bh(b[0], 'r'); else if (b.length === 2) badges = bh(b[0], 'l') + bh(b[1], 'r');
   const fl = (k.kind === 'zombie' || k.kind === 'horde' || k.kind === 'ending') && k.fl ? `<p class="fl">${esc(k.fl)}</p>` : '';
   const deckName = {horde:'NOISE DECK', survivor:'SET ASIDE', ending:'ENDING'}[k.kind] || (k.starter ? 'STARTING GEAR' : 'SURVIVAL DECK');
-  return `<div class="hdr"><div class="nm ${nmc}">${esc(k.name)}</div><div class="sub">${subOf(c)}</div></div>
-    <div class="art" style="background-image:url(${ART('' + (c.art || k.art[0]) + '.jpg')})"></div>${badges}
-    <div class="txt">${rulesOf(c).map(t => `<p>${esc(t)}</p>`).join('')}${fl}</div>
+  const mu = k.uses ? maxUses(c) : 0, ul = k.uses ? usesLeft(c) : 0;
+  const pips = mu ? `<div class="uses${ul <= 1 ? ' low' : ''}">${Array.from({length:mu}, (_, i) => `<i class="${i < ul ? '' : 'off'}"></i>`).join('')}</div>` : '';
+  const cq = isZ(c) && k.b >= cqLimit() ? '<div class="cqm">MELEE<br>−1 ♥</div>' : '';
+  const tags = tagsOf(c).map(x => `<span class="${x[1] || ''}">${x[0]}</span>`).join('');
+  return `<div class="hdr${mu ? ' hasU' : ''}"><div class="nm ${nmc}">${esc(k.name)}</div><div class="sub">${subOf(c)}</div>${pips}</div>
+    <div class="art" style="background-image:url(${ART('' + (c.art || k.art[0]) + '.jpg')})"></div>${badges}${cq}
+    <div class="lower">${tags ? `<div class="tags">${tags}</div>` : ''}<div class="txt">${rulesOf(c).map(t => `<p>${esc(t)}</p>`).join('')}${fl}</div></div>
     <div class="ftr"><span>HOLDOUT • BASE • ${deckName}</span><span>${k.id}</span></div>`;
 }
 function backOf(c){ const k = kd(c).kind; return k === 'horde' ? 'noise' : (k === 'survivor' || k === 'ending' || kd(c).starter) ? 'survivor' : 'survival'; }
@@ -610,12 +743,13 @@ function makeEl(c, faceDown){
   el.style.setProperty('--k', KIND[kd(c).kind][1]);
   el.style.setProperty('--dl', (-(c.u * 0.37) % 3).toFixed(2) + 's');
   el.innerHTML = `<div class="flip"><div class="face front">${faceHTML(c)}<div class="ov"></div></div><div class="face back" style="background-image:url(${ART('back-' + (backOf(c)) + '.jpg')})"></div></div>`;
-  el._key = JSON.stringify(badgesOf(c)) + ((G && G.surv) || '');
+  el._key = faceKey(c);
   return el;
 }
+function faceKey(c){ return JSON.stringify(badgesOf(c)) + ((G && G.surv) || '') + '|' + (c.wear || 0); }
 function refreshFace(c){
   const el = els.get(c.u); if (!el) return;
-  const key = JSON.stringify(badgesOf(c)) + (G.surv || '');
+  const key = faceKey(c);
   if (el._key === key) return; el._key = key;
   const f = el.querySelector('.front'); const ov = f.querySelector('.ov');
   f.innerHTML = faceHTML(c); f.appendChild(ov);
@@ -667,10 +801,12 @@ function foundLayout(){
 }
 function handLayout(){
   const cards = handCards(), n = cards.length, out = new Map(); if (!n) return out;
-  const cw = CW * HS, sp = n > 1 ? Math.min(cw * .8, (W - 18 - cw) / (n - 1)) : 0;
+  const nw = G.weapons.length, gapF = (nw && n > nw) ? .55 : 0;
+  const cw = CW * HS, sp = n > 1 ? Math.min(cw * .8, (W - 18 - cw) / (n - 1 + gapF)) : 0;
+  const span = (n - 1 + gapF) * sp;
   const cx = OX + W / 2, R = 820, si = cards.findIndex(c => c.u === SEL);
   cards.forEach((c, i) => {
-    const off = (i - (n - 1) / 2) * sp; let x = cx + off;
+    const off = -span / 2 + i * sp + (i >= nw ? gapF * sp : 0); let x = cx + off;
     if (si >= 0 && i !== si) x += (i < si ? -1 : 1) * Math.min(16, sp * .45);
     let p = {x, y:Z.handY + off * off / (2 * R), r:Math.asin(clamp(off / R, -1, 1)) * 57.3, s:HS, z:100 + i};
     if (c.u === SEL) p = {x, y:Z.handY - 14, r:0, s:HS * 1.05, z:180};
@@ -710,15 +846,29 @@ function render(){
       }
     }
     el.classList.toggle('dim', dim); el.classList.toggle('sel', c.u === SEL); el.classList.toggle('tgt', tgt);
+    el.classList.toggle('gW', G.weapons.includes(c)); el.classList.toggle('gP', G.pack.includes(c));
     el.classList.toggle('picked', !!(F && F.pending && F.pending.type === 'shotgun' && F.pending.t.includes(c.u)));
     const ov = el.querySelector('.ov');
     const ovh = (stamp ? `<div class="stamp">${stamp}</div>` : '') + (c.barr ? '<div class="planks"></div>' : '') + (c.dmg > 0 ? `<div class="wound">−${c.dmg}</div>` : '') + pred;
     if (ov._h !== ovh){ ov.innerHTML = ovh; ov._h = ovh; }
   }
-  renderHUD(); renderPiles(); renderBar();
+  renderHUD(); renderPiles(); renderBar(); renderCaps(); music.set(trackFor());
   $('#hordeEmpty').hidden = G.horde.length > 0 || G.phase === 'idle';
   $('#foundLbl').textContent = G.found.length ? '' : 'Found';
   document.body.classList.toggle('moon', MOON_DAYS.includes(G.day) && G.phase !== 'idle');
+}
+function renderCaps(){
+  const w = $('#capW'), p = $('#capP'), show = !!G && !['idle', 'over'].includes(G.phase);
+  w.hidden = p.hidden = !show; if (!show) return;
+  const nk = nonKnife(); w.textContent = `Weapons ${nk}/3 + Knife`; w.classList.toggle('over', nk > 3);
+  p.textContent = `Pack ${G.pack.length}/5`; p.classList.toggle('over', G.pack.length > 5);
+}
+function trackFor(){
+  if (!G || G.phase === 'idle') return 'title';
+  if (G.phase === 'over') return null;
+  if (G.phase === 'fight' || G.phase === 'bites') return 'fight';
+  if (G.phase === 'night' || G.phase === 'sleep' || (G.phase === 'limit' && G.limit && G.limit.next === 'nextday')) return 'night';
+  return 'scavenge';
 }
 function onTable(u){ return !!G && (G.horde.some(c => c.u === u) || G.found.some(c => c.u === u) || handCards().some(c => c.u === u)); }
 function predict(c){ const k = kd(c); if (k.kind === 'melee') return {dmg:k.dmg, melee:true}; if (k.gun === 'pistol') return {dmg:pistolDmg()}; if (k.gun) return {dmg:k.dmg}; if (k.aoe) return {dmg:k.aoe}; return {dmg:0}; }
@@ -791,7 +941,7 @@ function barModel(){
       const z = G.horde.length, runners = G.horde.filter(c => kd(c).fast).length;
       const acts = G.hunger >= 4 ? 2 : 3;
       return bar(`${z} zombie${z > 1 ? 's' : ''} in the Horde`, G.day === 12 ? 'The Last Stand. The helicopter is coming here, so you hold.' :
-        `Fight with ${acts} actions${G.hunger >= 4 ? ' (Hunger 4+)' : ''}, or flee: drop today's loot, Hunger +1.${runners ? ' Runners keep up.' : ''}`,
+        `Fight with ${acts} actions${G.hunger >= 4 ? ' (Hunger 4+)' : ''}. Or flee: drop today's loot, ${G.surv === 'P07' ? '' : 'Hunger +2, '}−1 Health.${runners ? ' Runners keep up.' : ''}${G.health <= 1 ? ' Fleeing now would kill you.' : ''}`,
         [{l:'Flee', on:() => act(doFlee), dis:G.day === 12}, {l:'Fight', c:'red', on:() => act(startFight)}]);
     }
     case 'fight': {
@@ -820,7 +970,7 @@ function barModel(){
 }
 function cardBar(c){
   const k = kd(c), F = G.fight; const btns = [{l:'Info', on:() => inspect(c)}];
-  let hint = rulesOf(c).join(' ');
+  let hint = describe(c);
   if (F){
     const r = fightReason(c);
     if (r) hint = r + '. ' + hint;
@@ -832,7 +982,7 @@ function cardBar(c){
     if (r === '') btns.push({l:k.kind === 'food' ? 'Eat' : 'Use', c:'pri', on:() => act(() => useItem(c.u))});
     else if (r) hint = r + ' ' + hint;
   }
-  return bar(k.name, hint, btns);
+  return bar(`${k.name} <small style="font:700 10px/1 var(--f-label);letter-spacing:.12em;color:${G.weapons.includes(c) ? 'var(--ringW)' : 'var(--ringP)'}">${G.weapons.includes(c) ? 'WEAPON' : 'PACK'}</small>`, hint, btns);
 }
 function renderBar(){
   const B = $('#bar');
@@ -987,7 +1137,7 @@ async function drawCard(){
 async function doEvent(c){
   const e = kd(c).ev;
   await wait(650);
-  if (e === 'horde'){ toast('Horde Approaches: 2 Noise zombies join.'); await toDiscard(c); await drawNoise(2); return; }
+  if (e === 'horde'){ sfx.horde(); toast('Horde Approaches: 2 Noise zombies join.'); await toDiscard(c); await drawNoise(2); return; }
   if (e === 'quiet'){ G.quiet = true; G.stopNow = true; toast('Quiet Day. You stop scavenging, and skip Hunger tonight.', 3000); }
   if (e === 'safe'){ heal(2); changeHunger(-1); }
   if (e === 'cache'){ gainAmmo(3); }
@@ -1033,8 +1183,10 @@ async function doFlee(){
   G.horde = run; shuffle(G.deck);
   await wait(360); back.forEach(z => removeEl(z.u));
   for (const c of [...G.found]){ G.found.splice(G.found.indexOf(c), 1); toDiscard(c, lastPos.get(c.u)); }
-  await wait(360);
-  if (G.surv !== 'P07') changeHunger(1);
+  sfx.flee(); await wait(360);
+  if (G.surv !== 'P07') changeHunger(2);
+  render(); await wait(350);
+  toast('They catch you as you run: −1 Health.'); sfx.bite(); await loseHealth(1, 'overrun');
   render();
   if (run.length){ toast('The Runners keep up. Fight them.'); await wait(400); await startFight(); }
   else await doCollect();
@@ -1089,15 +1241,15 @@ async function playCard(u, zu){
   const gun = k.gun;
   if (gun && gun !== 'crossbow'){ G.ammo--; F.guns++; renderHUD(); }
   await attackAnim(c, z, gun);
-  if (k.kind === 'melee'){ await hitZombie(z, k.dmg, true); }
-  else if (gun === 'crossbow'){ await hitZombie(z, 2, false); }
+  if (k.kind === 'melee'){ await hitZombie(z, k.dmg, true); await wearOut(c); }
+  else if (gun === 'crossbow'){ await hitZombie(z, 2, false); await wearOut(c); }
   else if (gun === 'pistol'){
     await hitZombie(z, pistolDmg(), false);
     if (G.ammo >= 1 && G.horde.length){ F.pending = {type:'pistol2', u}; render(); return; }
   }
   else if (gun === 'rifle'){
     const left = kd(z).t - z.dmg; const over = Math.max(0, 5 - left);
-    await hitZombie(z, 5, false);
+    await hitZombie(z, 5, false); await wearOut(c);
     if (over > 0 && G.horde.length){
       if (G.horde.length === 1){ await wait(150); await hitZombie(G.horde[0], over, false); }
       else { F.pending = {type:'rifle', amount:over}; render(); return; }
@@ -1114,7 +1266,24 @@ async function fireShotgun(){
   await attackAnim(c, targets[0], 'shotgun');
   for (const t of targets.slice(1)){ const p = centerOf(t.u); FX.sparks(p.x, p.y, 10); }
   await hitMany(targets.map(t => [t, 2]), false);
+  await wearOut(c);
   await afterAction();
+}
+async function wearOut(c){
+  if (!c || !kd(c).uses || !G.weapons.includes(c)) return;
+  c.wear = (c.wear || 0) + 1;
+  if (usesLeft(c) <= 0) await breakWeapon(c);
+  else { render(); if (usesLeft(c) === 1) toast(`${kd(c).name}: 1 use left before it breaks.`); }
+}
+async function breakWeapon(c){
+  const i = G.weapons.indexOf(c); if (i < 0) return;
+  G.weapons.splice(i, 1); G.stats.broke = (G.stats.broke || 0) + 1;
+  const el = els.get(c.u), p = lastPos.get(c.u) || {x:OX + W / 2, y:Z.handY};
+  floating.add(c.u);
+  if (el){ el.classList.remove('sel', 'dim'); el.classList.add('breaking'); el.style.zIndex = 700; }
+  sfx.brk(); vib(35); FX.sparks(p.x, p.y - 30, 12, '#e3d3b0'); FX.dust(p.x, p.y - 20, 10, '#8a7a62');
+  floatText(p.x, Z.bar.y - 36, 'Broken!', 'red big'); toast(`Your ${kd(c).name} breaks.`);
+  await wait(720); removeEl(c.u); G.discard.push(c); renderPiles(); render();
 }
 async function resolvePending(zu){
   const F = G.fight, P = F && F.pending; if (!P) return;
@@ -1141,11 +1310,11 @@ async function attackAnim(c, z, gun){
   const home = lastPos.get(c.u) || {x:OX + W / 2, y:Z.handY, s:HS, r:0};
   if (!gun){ // melee: the card swings into the zombie
     await flyTo(c, {x:zp.x, y:zp.y + 40, s:HS * .95, r:-28, z:700}, 230);
-    sfx.melee(); vib(25); FX.sparks(zp.x, zp.y, 8, '#fff'); FX.dust(zp.x, zp.y, 6);
+    sfx.melee(kd(c).blunt ? 'blunt' : 'blade'); vib(25); FX.sparks(zp.x, zp.y, 8, '#fff'); FX.dust(zp.x, zp.y, 6);
     floating.delete(c.u);
   } else {
     await flyTo(c, {x:home.x + (zp.x - home.x) * .25, y:home.y - 70, s:HS * 1.05, r:(zp.x - home.x) * .05, z:700}, 200);
-    if (gun === 'shotgun') { sfx.shotgun(); shake(9); vib(50); } else if (gun === 'crossbow') sfx.bolt(); else { sfx.shot(); shake(5); vib(30); }
+    if (gun === 'shotgun') { sfx.shotgun(); shake(9); vib(50); } else if (gun === 'crossbow') sfx.bolt(); else if (gun === 'rifle') { sfx.rifle(); shake(8); vib(45); } else { sfx.shot(); shake(5); vib(30); }
     FX.sparks(zp.x, zp.y, gun === 'shotgun' ? 18 : 12, gun === 'crossbow' ? '#e9e4d8' : '#ffd27a');
     floating.delete(c.u);
   }
@@ -1183,7 +1352,7 @@ async function finishFight(){
     if (z.barr){ const p = centerOf(z.u); floatText(p.x, p.y, 'Held off', 'amber'); await wait(300); continue; }
     cls(z.u, 'lunge', 520); await wait(200);
     sfx.bite(); shake(10); vib(60);
-    if (kd(z).inf && !G.infected){ G.infected = true; const p = elCenter('#stHealth'); floatText(p.x + 60, p.y + 30, 'Infected!', 'toxic big'); FX.toxic(p.x, p.y); }
+    if (kd(z).inf && !G.infected){ G.infected = true; sfx.infect(); const p = elCenter('#stHealth'); floatText(p.x + 60, p.y + 30, 'Infected!', 'toxic big'); FX.toxic(p.x, p.y); }
     G.stats.bitten = (G.stats.bitten || 0) + kd(z).b;
     await loseHealth(kd(z).b, 'overrun');
     await wait(260);
@@ -1269,7 +1438,9 @@ async function gameOver(kind){
   REC.games++; REC.stars += E.stars; REC.end[kind] = (REC.end[kind] || 0) + 1; store('holdout.records', REC);
   store('holdout.save', null);
   render(); $('#bar').style.visibility = 'hidden';
-  if (E.stars) sfx.win(); else sfx.lose();
+  music.set(E.stars ? 'victory' : 'defeat');
+  if (kind === 'rescue' || kind === 'quarantine') sfx.heli();
+  if (!music.on) { if (E.stars) sfx.win(); else sfx.lose(); }
   showEnd(kind);
   throw new Over();
 }
@@ -1326,7 +1497,8 @@ function inspect(c){
   box.innerHTML = '';
   box.appendChild(hold);
   const t = document.createElement('div'); t.className = 'ruletext';
-  t.innerHTML = `${extra}${rulesOf(c).map(x => `<p style="margin:0 0 6px">${esc(x)}</p>`).join('') || ''}${k.fl ? `<div class="fl">${esc(k.fl)}</div>` : ''}`;
+  const grp = G && G.weapons.includes(c) ? '<small style="color:var(--ringW)">Weapon · carry 3 plus the Knife</small><br>' : G && G.pack.includes(c) ? '<small style="color:var(--ringP)">Pack item · your Pack holds 5</small><br>' : '';
+  t.innerHTML = `${grp}${extra}<p style="margin:6px 0 6px">${esc(['survivor', 'ending'].includes(k.kind) ? rulesOf(c).join(' ') : describe(c))}</p>${k.fl ? `<div class="fl">${esc(k.fl)}</div>` : ''}`;
   box.appendChild(t);
   const sm = document.createElement('small'); sm.textContent = 'Tap anywhere to close'; box.appendChild(sm);
   box.onclick = () => box.remove();
@@ -1336,11 +1508,12 @@ function showMenu(){
   if (!G || G.phase === 'idle') return;
   const s = sheet(`<h3>Paused</h3><p style="color:var(--muted)">Day ${G.day} · ${DIFFS.find(d => d.k === G.diff).n} · ${G.surv ? D[G.surv].name : 'No survivor'}</p>
     <div class="row" style="flex-direction:column"><button class="btn pri" id="mR">Resume</button><button class="btn" id="mH">How to play</button><button class="btn" id="mT">Replay the table tour</button>
-    <button class="btn" id="mS">Sound: ${sfx.on ? 'On' : 'Off'}</button><button class="btn" id="mF">Animation: ${SPEED < 1 ? 'Fast' : 'Normal'}</button><button class="btn red" id="mQ">Quit to title</button></div>`);
+    <button class="btn" id="mM">Music: ${music.on ? 'On' : 'Off'}</button><button class="btn" id="mS">Sound effects: ${sfx.on ? 'On' : 'Off'}</button><button class="btn" id="mF">Animation: ${SPEED < 1 ? 'Fast' : 'Normal'}</button><button class="btn red" id="mQ">Quit to title</button></div>`);
   s.querySelector('#mR').onclick = closeSheet;
   s.querySelector('#mH').onclick = showRules;
   s.querySelector('#mT').onclick = () => { closeSheet(); if (G.phase === 'fight' || G.phase === 'scavenge' || G.phase === 'decide' || G.phase === 'night' || G.phase === 'limit') runTour(); else toast('The tour can start once this step finishes.'); };
   s.querySelector('#mS').onclick = () => { sfx.on = !sfx.on; showMenu(); };
+  s.querySelector('#mM').onclick = () => { music.on = !music.on; showMenu(); };
   s.querySelector('#mF').onclick = () => { SPEED = SPEED < 1 ? 1 : .55; store('holdout.speed', SPEED); applySpeed(); showMenu(); };
   s.querySelector('#mQ').onclick = () => { closeSheet(); showTitle(); };
   s.onclick = e => { if (e.target === s) closeSheet(); };
@@ -1351,12 +1524,18 @@ function showRules(){
   <h4>Each day</h4><ul>
   <li><b>Scavenge.</b> Tap the Survival deck. Draw at least 2, then stop when you like. Zombies join the Horde. Loot waits in Found until after the fight. Events happen at once.</li>
   <li><b>Blood Moon</b> on Days 3, 6, 9 and 12: 2 Noise zombies join.</li>
-  <li><b>Fight or flee.</b> Fighting gives you 3 actions (2 if Hunger is 4+). Fleeing drops today's loot, costs 1 Hunger, and sends the zombies back into the decks. Runners keep up. No fleeing on Day 12.</li>
-  <li><b>Night.</b> Hunger +1. At Hunger 6 you lose 1 Health. Infected? Lose 1 more. Your Pack holds 5.</li></ul>
+  <li><b>Fight or flee.</b> Fighting gives you 3 actions (2 if Hunger is 4+). Fleeing is a last resort: you drop today's loot, gain 2 Hunger and lose 1 Health, and the zombies go back into the decks. Runners keep up. No fleeing on Day 12.</li>
+  <li><b>Night.</b> Hunger +1. At Hunger 6 you lose 1 Health. Infected? Lose 1 more.</li></ul>
+  <h4>What you can carry</h4><ul>
+  <li><b>Weapons</b> (blue edge): 3, plus the Kitchen Knife.</li>
+  <li><b>Pack</b> (tan edge): 5 items. Food, medicine and tools like the Molotov, Pipe Bomb and Barricade.</li>
+  <li>Find more than that and you drop one. The labels above your hand show the counts.</li></ul>
   <h4>Fighting</h4><ul>
   <li>Drag a weapon from your hand onto a zombie, or tap the weapon then the zombie. Each weapon acts once per fight.</li>
+  <li>The <b>left badge</b> on a weapon is how many zombies it can hit; the <b>right badge</b> is its damage. The Pistol fires 2 shots that can hit 2 zombies; the Shotgun hits up to 3; the Rifle's leftover damage hits a second zombie.</li>
+  <li><b>Weapons wear out.</b> Found weapons break after a few uses: the pips next to the name show what's left. Your Knife and Pistol never break.</li>
   <li>Damage adds up. When it reaches a zombie's Tough, it dies.</li>
-  <li><b>Close Quarters:</b> hitting a Bite 2 or 3 zombie with a melee weapon costs you 1 Health.</li>
+  <li><b>Close Quarters:</b> hitting a Bite 2 or 3 zombie with a melee weapon always costs you 1 Health. It's not a chance. Those zombies carry a red <b>MELEE −1 ♥</b> tag, and the zombie shows <b>−1 ♥</b> while you aim.</li>
   <li>Guns cost 1 Ammo and make Noise: 1 Noise card per gun fired joins the Horde after the fight. The Crossbow is silent.</li>
   <li>Zombies still standing bite. ☣ bites make you Infected. Only Antibiotics cure it.</li></ul>
   <h4>Outside fights</h4><p>Tap food or medicine in your hand and choose Eat or Use, or drag it up onto the tracker. Long-press any card to read it.</p>
@@ -1380,14 +1559,18 @@ function showTitle(){
       ${saved && saved.phase ? `<button class="btn pri" id="tC">Continue · Day ${saved.day}</button>` : ''}
       <button class="btn ${saved && saved.phase ? '' : 'pri'}" id="tN">New game</button>
       <button class="btn" id="tH">How to play</button>
-    </div></div>`;
+    </div>
+    <div class="snd"><button id="tM" aria-pressed="${music.on}">Music ${music.on ? 'on' : 'off'}</button><button id="tS" aria-pressed="${sfx.on}">Sound effects ${sfx.on ? 'on' : 'off'}</button></div></div>`;
   t.querySelector('#tN').onclick = () => { sfx.init(); sfx.tap(); showPick(); };
   t.querySelector('#tH').onclick = () => { sfx.init(); showRules(); };
+  t.querySelector('#tM').onclick = () => { music.on = !music.on; showTitle(); };
+  t.querySelector('#tS').onclick = () => { sfx.on = !sfx.on; sfx.init(); sfx.tap(); showTitle(); };
+  music.set('title');
   const c = t.querySelector('#tC'); if (c) c.onclick = () => { sfx.init(); sfx.tap(); resume(saved); };
 }
 function showPick(){
   G = null; for (const u of [...els.keys()]) removeEl(u);
-  const p = $('#pick'); p.hidden = false; $('#title').hidden = true;
+  const p = $('#pick'); p.hidden = false; $('#title').hidden = true; music.set('title');
   const diffBtns = DIFFS.map(d => `<button data-d="${d.k}" aria-pressed="${d.k === DIFF}">${d.n}<b>${d.hp} ♥</b></button>`).join('');
   p.innerHTML = `<div class="in"><button class="back-btn" id="pB">‹ Back</button><h2>Pick a survivor</h2>
     <p class="lead">Difficulty sets your starting Health.</p>
@@ -1517,20 +1700,22 @@ const TOUR = [
   {el:'#days', title:'The day track', text:'Last 12 days. The helicopter lands after the night of Day 12. Pink days are Blood Moons: 2 extra zombies join that night.'},
   {el:'#hud .r2', title:'Health, Hunger, Ammo', text:'Health at 0 ends the game. Hunger rises every night: at 4 you get only 2 fight actions, and at 6 you lose Health. Ammo feeds your guns.'},
   {el:'#survChip', title:'Your survivor', text:'Your special ability. Tap here any time to read it.'},
-  {zone:'horde', title:'The Horde', text:'Zombies you draw gather here. Tough is the damage it takes to kill one. Bite is the Health you lose if it is still standing when the fight ends.'},
+  {zone:'horde', title:'The Horde', text:'Zombies you draw gather here. Tough is the damage it takes to kill one. Bite is the Health you lose if it is still standing when the fight ends. A red MELEE −1 ♥ tag means melee hits on it always cost you 1 Health.'},
   {el:'#pDeck', pile:1, title:'Survival deck', text:'Tap it to scavenge. Draw at least 2 cards a day, then stop when you like. Any card might be loot, or a zombie.'},
   {zone:'found', title:'Found', text:'Loot you find waits here until after the fight. If you flee, you drop it.'},
   {el:'#pNoise', pile:1, title:'Noise deck', text:'The dead follow noise. Every gun you fire, Molotov or Pipe Bomb brings a zombie from here after the fight. Blood Moons draw from it too.'},
-  {el:'#pDisc', pile:1, title:'Discard', text:'Used items and dead zombies end up here.'},
-  {el:'#bar', title:'What to do now', text:'This bar tells you what happens next and holds the buttons for it. Tap a card in your hand and it shows that card instead.'},
-  {zone:'hand', title:'Your hand', text:'Your weapons and Pack. In a fight, drag a weapon onto a zombie. Outside fights, drag food or medicine up to use it. Long-press any card to read it.'},
+  {el:'#pDisc', pile:1, title:'Discard', text:'Used items, broken weapons and dead zombies end up here.'},
+  {el:'#bar', title:'What to do now', text:'This bar tells you what happens next and holds the buttons. When zombies come you choose Fight or Flee. Fleeing is costly: you drop today\'s loot, gain 2 Hunger and lose 1 Health.'},
+  {zone:'hand', title:'What you can carry', text:'Weapons have a blue edge, Pack items a tan edge. You carry 3 weapons plus the Kitchen Knife, and 5 Pack items: food, medicine and tools like the Molotov. Find more and you must drop one. The labels show your counts.'},
+  {card:'S02', title:'Reading a weapon', text:'Left badge: how many zombies it can hit. Right badge: its damage. Found weapons wear out, and the pips by the name show uses left. Your Knife and Pistol never break. Long-press any card to read it.'},
 ];
 let TUT = null;
-const tourDone = () => load('holdout.tour', false) || window.__tourSeen;
+const tourDone = () => load('holdout.tour2', false) || window.__tourSeen;
 function tourRect(s){
   if (s.zone === 'horde') return {x:Z.horde.x, y:Z.horde.y - 18, w:Z.horde.w, h:Z.horde.h + 18};
   if (s.zone === 'found') return {x:Z.found.x - 4, y:Z.found.y - 6, w:Z.found.w + 8, h:Z.found.h + 24};
-  if (s.zone === 'hand') return {x:OX + 4, y:Z.handTop + 2, w:W - 8, h:H - Z.handTop + 20};
+  if (s.zone === 'hand') return {x:OX + 4, y:Z.handTop - 25, w:W - 8, h:H - Z.handTop + 40};
+  if (s.card){ const c = G && G.weapons.find(x => x.id === s.card), e = c && els.get(c.u); if (!e) return null; const b = e.getBoundingClientRect(); return {x:b.left - 6, y:b.top - 6, w:b.width + 12, h:Math.min(b.height + 12, innerHeight - b.top + 6)}; }
   const e = $(s.el); if (!e || e.hidden) return null;
   const b = e.getBoundingClientRect(); if (!b.width || !b.height) return null;
   return s.pile ? {x:b.left - 10, y:b.top - 14, w:b.width + 20, h:b.height + 34} : {x:b.left - 6, y:b.top - 6, w:b.width + 12, h:b.height + 12};
@@ -1544,7 +1729,7 @@ function runTour(){
   box.innerHTML = '<div class="spot"></div><div class="tip"><div class="st"></div><h4></h4><p></p><div class="row"><button class="skip">Skip tour</button><div class="dots"></div><button class="btn pri nx">Next</button></div></div>';
   document.body.appendChild(box);
   TUT = {i:0, steps, box};
-  const finish = () => { store('holdout.tour', true); window.__tourSeen = true; box.remove(); TUT = null; render(); };
+  const finish = () => { store('holdout.tour2', true); window.__tourSeen = true; box.remove(); TUT = null; render(); };
   const next = () => { sfx.init(); sfx.tap(); if (TUT.i >= steps.length - 1) finish(); else { TUT.i++; showStep(); } };
   box.querySelector('.nx').onclick = e => { e.stopPropagation(); next(); };
   box.querySelector('.skip').onclick = e => { e.stopPropagation(); sfx.tap(); finish(); };
@@ -1560,6 +1745,7 @@ function showStep(first){
   tip.querySelector('h4').textContent = s.title;
   tip.querySelector('p').textContent = s.text;
   tip.querySelector('.nx').textContent = i === steps.length - 1 ? 'Start playing' : 'Next';
+  tip.querySelector('.skip').style.visibility = i === steps.length - 1 ? 'hidden' : 'visible';
   tip.querySelector('.dots').innerHTML = steps.map((_, n) => `<i class="${n === i ? 'on' : ''}"></i>`).join('');
   if (!first){ tip.classList.remove('swap'); void tip.offsetWidth; tip.classList.add('swap'); }
   const tw = tip.offsetWidth, th = tip.offsetHeight, vh = innerHeight, top0 = SAFE.t + 10;
@@ -1581,6 +1767,8 @@ function grain(){
 }
 function start(data){
   applySpeed(); grain(); readSafe(); geo();
+  const unlock = () => { sfx.init(); music.unlock(); };
+  document.addEventListener('pointerdown', unlock, true);
   const tb = $('#table');
   tb.addEventListener('pointerdown', onDown);
   addEventListener('pointermove', onMove, {passive:true});
@@ -1598,7 +1786,7 @@ window.HO = { get G(){ return G; }, get busy(){ return ANIM > 0; }, setSpeed(s){
   newGame:(d, s) => { G = fresh(); return act(() => newGame(d, s)); }, draw:() => act(drawCard), stop:() => act(endScavenge), fight:() => act(startFight), flee:() => act(doFlee),
   play:(u, z) => act(() => playCard(u, z)), pend:z => act(() => resolvePending(z)), fire:() => act(fireShotgun), end:() => act(finishFight),
   use:u => act(() => useItem(u)), drop:u => act(() => dropCard(u)), sleep:() => act(doSleep), answer:y => act(() => answer(y)),
-  useReason, fightReason, limitEligible, kd, inst:id => inst(id), render:() => render(), tour:() => runTour() };
+  useReason, fightReason, limitEligible, kd, inst:id => inst(id), render:() => render(), tour:() => runTour(), audio:() => ({sfx:sfx.loaded, music:music.state()}) };
 window.claude?.hot?.ready ? window.claude.hot.ready(start) : start(window.claude?.hot?.data ?? {});
 </script>
 
